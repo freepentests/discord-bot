@@ -1,5 +1,5 @@
 export class Channels {
-	this.#token;
+	#token;
 
 	constructor(token) {
 		this.#token = token;
@@ -12,7 +12,7 @@ export class Channels {
     			},
 			body: JSON.stringify({
 				type: type,
-				name: name
+				name: name,
 				permission_overwrites: [],
 				parent_id: categoryId
 			}),

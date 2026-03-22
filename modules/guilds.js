@@ -1,5 +1,5 @@
 export class Guilds {
-	this.#token;
+	#token;
 
 	constructor(token) {
 		this.#token = token;

@@ -1,5 +1,5 @@
 export class Users {
-	this.#token;
+	#token;
 
 	constructor(token) {
 		this.#token = token;

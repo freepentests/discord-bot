@@ -1,5 +1,5 @@
 export class Profile {
-	this.#token;
+	#token;
 
 	constructor(token) {
 		this.#token = token;

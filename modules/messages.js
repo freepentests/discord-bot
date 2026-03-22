@@ -1,5 +1,5 @@
 export class Messages {
-	this.#token;
+	#token;
 
 	constructor(token) {
 		this.#token = token
@@ -8,16 +8,19 @@ export class Messages {
 	startTyping(channelId) {
 		return fetch(`https://discord.com/api/v9/channels/${channelId}/typing`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token,
+				'Content-Type': 'application/json'
     			},
     			method: 'POST'
 		});
 	}
 
 	sendMessage(channelId, content, reference = null) {
+		console.log(channelId);
 		return fetch(`https://discord.com/api/v9/channels/${channelId}/messages`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token,
+				'Content-Type': 'application/json'
     			},
     			body: JSON.stringify({
 	    			mobile_network_type: 'unknown',
@@ -34,7 +37,8 @@ export class Messages {
 	deleteMessage(channelId, messageId) {
 		return fetch(`https://discord.com/api/v9/channels/${channelId}/messages/${messageId}`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token,
+				'Content-Type': 'application/json'
     			},
     			method: 'DELETE'
 		});
@@ -43,7 +47,8 @@ export class Messages {
 	editMessage(channelId, messageId, newContent) {
 		return fetch(`https://discord.com/api/v9/channels/${channelId}/messages/${messageId}`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token,
+				'Content-Type': 'application/json'
     			},
 			body: JSON.stringify({
 				content: newContent
@@ -58,7 +63,8 @@ export class Messages {
 
 		return fetch(url, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token,
+				'Content-Type': 'application/json'
     			},
     			method: 'GET'
 		});
