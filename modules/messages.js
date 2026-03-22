@@ -10,7 +10,7 @@ export class Messages {
     			headers: {
         			Authorization: this.#token
     			},
-    			method: 'POST',
+    			method: 'POST'
 		});
 	}
 
@@ -36,7 +36,7 @@ export class Messages {
     			headers: {
         			Authorization: this.#token
     			},
-    			method: 'DELETE',
+    			method: 'DELETE'
 		});
 	}
 
@@ -48,7 +48,7 @@ export class Messages {
 			body: JSON.stringify({
 				content: newContent
 			}),
-    			method: 'PATCH',
+    			method: 'PATCH'
 		});
 	}
 
@@ -58,9 +58,9 @@ export class Messages {
 
 		return fetch(url, {
     			headers: {
-        			Authorization: this.#token,
+        			Authorization: this.#token
     			},
-    			method: 'GET',
+    			method: 'GET'
 		});
 	}
 }
