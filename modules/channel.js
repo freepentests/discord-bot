@@ -29,7 +29,7 @@ export class Channel {
 		});
 	}
 
-	send(content) {
+	send(content, reference = null) {
 		return fetch(`https://discord.com/api/v9/channels/${this.data.id}/messages`, {
     			headers: {
         			Authorization: 'Bot ' + this.#token,
@@ -40,7 +40,7 @@ export class Channel {
 	    			content: content,
 	    			nonce: null,
 	    			tts: false,
-	    			message_reference: null,
+	    			message_reference: reference,
 	    			flags: 0
     			}),
     			method: 'POST'

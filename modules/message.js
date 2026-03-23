@@ -16,7 +16,13 @@ export class Message {
 		});
 	}
 
-	reply() {return}
+	reply(content) {
+		return this.channel.send(content, {
+			channel_id: this.channel.id,
+			guild_id: this.guild.id,
+			message_id: this.data.id
+		})
+	}
 
 	delete() {
 		return fetch(`https://discord.com/api/v9/channels/${this.data.channel_id}/messages/${this.data.id}`, {
