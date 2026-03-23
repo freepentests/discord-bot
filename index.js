@@ -1,11 +1,10 @@
-import { Messages } from './modules/messages.js';
+import { Message } from './modules/message.js';
 
 export class Client {
 	#token;
 
 	constructor(token, intents = 32767) {
 		this.#token = token;
-		this.messages = new Messages(this.#token);
 		this.intents = intents;
 		this.ws;
 
@@ -32,8 +31,25 @@ export class Client {
 		this.ws.addEventListener('message', (msg) => {
 			const data = JSON.parse(msg.data);
 
-			if (data.t === eventName) callback(data.d);
+			if (data.t !== eventName) return;
+
+			switch (data.t) {
+				case 'MESSAGE_CREATE':
+					callback(new Message(this.#token, data.d));
+					break;
+
+				default:
+					callback(data.d);
+					break;
+			}
 		});
+	}
+
+	sendHeartbeat() {
+		this.ws.send(JSON.stringify({
+			op: 1,
+			d: null
+		}));
 	}
 
 	connect() {
@@ -41,6 +57,13 @@ export class Client {
 		this.ws.onopen = () => {
 			console.log('connected to gateway');
 			this.identify();
+		}
+
+		this.ws.onmessage = (msg) => {
+			const data = JSON.parse(msg.data);
+			if (data.op === 10) {
+				setInterval(this.sendHeartbeat.bind(this), data.d.heartbeat_interval * Math.random());
+			}
 		}
 
 		this.ws.onclose = () => {
