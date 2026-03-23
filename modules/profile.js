@@ -8,7 +8,7 @@ export class Profile {
 	changeDisplayName(name) {
 		return fetch('https://discord.com/api/v9/users/@me', {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 	    			global_name: name
@@ -20,7 +20,7 @@ export class Profile {
 	changePronouns(pronouns) {
 		return fetch('https://discord.com/api/v9/users/@me/profile', {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 	    			pronouns: pronouns
@@ -32,7 +32,7 @@ export class Profile {
 	changeBio(bio) {
 		return fetch('https://discord.com/api/v9/users/@me/profile', {
     			headers: {
-        			Authorization: this.#token,
+        			Authorization: 'Bot ' + this.#token,
     			},
     			body: JSON.stringify({
 	    			bio: bio
@@ -44,7 +44,7 @@ export class Profile {
 	changeBannerColor(color) {
 		return fetch('https://discord.com/api/v9/users/@me/profile', {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 	    			accent_color: color
@@ -56,7 +56,7 @@ export class Profile {
 	changeAvatar(avatar) {
 		return fetch('https://discord.com/api/v9/users/@me', {
 			headers: {
-				Authorization: this.#token
+				Authorization: 'Bot ' + this.#token
 			},
 			body: JSON.stringify({
 				avatar: avatar

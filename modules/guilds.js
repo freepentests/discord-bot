@@ -8,7 +8,7 @@ export class Guilds {
 	ban(guildId, userId, deleteMessageSeconds) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/bans/${userId}`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 	    			delete_message_seconds: deleteMessageSeconds
@@ -20,7 +20,7 @@ export class Guilds {
 	kick(guildId, userId) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/members/${userId}?reason=`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			method: 'DELETE',
 		});
@@ -32,7 +32,7 @@ export class Guilds {
 	
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/members/${userId}`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 	    			communication_disabled_until: now.toISOString()
@@ -44,7 +44,7 @@ export class Guilds {
 	changeNickname(guildId, userId, nickname) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/members/${userId}`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 	    			nick: nickname
@@ -56,7 +56,7 @@ export class Guilds {
 	getGuildProfile(guildId) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/profile`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			method: 'GET',
 		});
@@ -65,7 +65,7 @@ export class Guilds {
 	changeServerName(guildId, name) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/profile`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 	    			name: name,
@@ -78,7 +78,7 @@ export class Guilds {
 	changeServerDescription(guildId, description) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/profile`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 	    			description: description,
@@ -91,7 +91,7 @@ export class Guilds {
 	changeServerIcon(guildId, icon) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/profile`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 	    			icon: icon,
@@ -104,7 +104,7 @@ export class Guilds {
 	unban(guildId, userId) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/bans/${userId}`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			method: 'DELETE'
 		});
@@ -113,7 +113,7 @@ export class Guilds {
 	createEmoji(guildId, image, name) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/emojis`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 	    			image: image,
@@ -126,7 +126,7 @@ export class Guilds {
 	deleteEmoji(guildId, emojiId) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/emojis/${emojiId}`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			method: 'DELETE'
 		});

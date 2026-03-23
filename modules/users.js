@@ -8,7 +8,7 @@ export class Users {
 	adoptTag(guildId, enabled = true) {
 		return fetch('https://discord.com/api/v9/users/@me/clan', {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 	    			identity_guild_id: String(guildId),
@@ -21,7 +21,7 @@ export class Users {
 	getProfile(userId) {
 		return fetch(`https://discord.com/api/v9/users/${userId}/profile`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			method: 'GET'
 		});
@@ -30,7 +30,7 @@ export class Users {
 	removeFriend(userId) {
 		return fetch(`https://discord.com/api/v9/users/@me/relationships/${userId}`, {
 			headers: {
-				Authorization: this.#token
+				Authorization: 'Bot ' + this.#token
 			},
 			method: 'DELETE'
 		});
@@ -39,7 +39,7 @@ export class Users {
 	ignore(userId) {
 		return fetch(`https://discord.com/api/v9/users/@me/relationships/${userId}/ignore`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			method: 'PUT'
 		});
@@ -48,7 +48,7 @@ export class Users {
 	unignore(userId) {
 		return fetch(`https://discord.com/api/v9/users/@me/relationships/${userId}/ignore`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			method: 'DELETE'
 		});
@@ -57,7 +57,7 @@ export class Users {
 	block(userId) {
 		return fetch(`https://discord.com/api/v9/users/@me/relationships/${userId}`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
 			body: JSON.stringify({
 				type: 2
@@ -69,7 +69,7 @@ export class Users {
 	unblock(userId) {
 		return fetch(`https://discord.com/api/v9/users/@me/relationships/${userId}`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
 			body: JSON.stringify({
 				type: 2
@@ -81,7 +81,7 @@ export class Users {
 	getRelationships() {
 		return fetch('https://discord.com/api/v9/users/@me/relationships', {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			method: 'GET'
 		});
@@ -90,7 +90,7 @@ export class Users {
 	me() {
 		return fetch('https://discord.com/api/v9/users/@me', {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			method: 'GET'
 		});

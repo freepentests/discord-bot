@@ -3,9 +3,10 @@ import { Messages } from './modules/messages.js';
 export class Client {
 	#token;
 
-	constructor(token) {
+	constructor(token, intents = 32767) {
 		this.#token = token;
 		this.messages = new Messages(this.#token);
+		this.intents = intents;
 		this.ws;
 
 		this.connect();
@@ -16,29 +17,36 @@ export class Client {
 			op: 2,
 			d: {
 				token: this.#token,
-				intents: 513,
+				intents: this.intents,
 				properties: {
-         				$os: "linux",
-         				$browser: "chrome",
-         				$device: "chrome",
+         				$os: null,
+         				$browser: null,
+         				$device: null
       				},
 				presence: {status: 'online', afk: false},
 			}
 		}));
 	}
 
+	addEventListener(eventName, callback) {
+		this.ws.addEventListener('message', (msg) => {
+			const data = JSON.parse(msg.data);
+
+			if (data.t === eventName) callback(data.d);
+		});
+	}
+
 	connect() {
 		this.ws = new WebSocket('wss://gateway.discord.gg/?encoding=json&v=9');
 		this.ws.onopen = () => {
-			console.log('hi');
+			console.log('connected to gateway');
 			this.identify();
 		}
 
-		this.ws.onmessage = async (msg) => {
-			const data = JSON.parse(msg.data);
-		};
-
-		this.ws.onclose = () => console.log('bye');
+		this.ws.onclose = () => {
+			console.log('disconnected; trying to reconnect to gateway');
+			this.connect();
+		}
 	}
 }
 

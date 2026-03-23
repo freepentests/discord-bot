@@ -8,7 +8,7 @@ export class Channels {
 	createChannel(name, guildId, type = 0, categoryId = null) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/channels`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
 			body: JSON.stringify({
 				type: type,
@@ -23,7 +23,7 @@ export class Channels {
 	deleteChannel(channelId) {
 		return fetch(`https://discord.com/api/v9/channels/${channelId}`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			method: 'DELETE'
 		});
@@ -32,7 +32,7 @@ export class Channels {
 	createInvite(channelId, maxAge = 0, maxUses = 0) {
 		return fetch(`https://discord.com/api/v9/channels/${channelId}/invites`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 				validate: null,

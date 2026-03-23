@@ -8,7 +8,7 @@ export class Roles {
 	async getRoles(guildId, userId) {
 		const resp = await fetch(`https://discord.com/api/v9/users/${userId}/profile?guild_id=${guildId}`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			method: 'GET'
 		});
@@ -20,7 +20,7 @@ export class Roles {
 	async addRole(guildId, roleId, userId) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/members/${userId}`, {
   			headers: {
-       				Authorization: this.#token
+       				Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 				roles: [
@@ -38,7 +38,7 @@ export class Roles {
 
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/members/${userId}`, {
   			headers: {
-       				Authorization: this.#token
+       				Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 				roles: [
@@ -52,7 +52,7 @@ export class Roles {
 	createRole(guildId, name = 'new role', color = 0x000000) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/roles`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 				name: name,
@@ -72,7 +72,7 @@ export class Roles {
 		// perms are at https://docs.discord.com/developers/topics/permissions
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/roles/${roleId}`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			body: JSON.stringify({
 				permissions: permissions
@@ -84,7 +84,7 @@ export class Roles {
 	deleteRole(guildId, roleId) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/roles/${roleId}`, {
     			headers: {
-        			Authorization: this.#token
+        			Authorization: 'Bot ' + this.#token
     			},
     			method: 'DELETE',
 		});
