@@ -6,49 +6,21 @@ export class Guild {
 		this.data = data
 	}
 
-	async getRoles(userId) {
-		const resp = await fetch(`https://discord.com/api/v9/users/${userId}/profile?guild_id=${this.data.id}`, {
+	async addRole(roleId, userId) {
+		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/members/${userId}/roles/${roleId}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token
 			},
-			method: 'GET'
-		});
-		const response = await resp.json();
-
-		return new Set(response.guild_member.roles);
-	}
-
-	async addRole(roleId, userId) {
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/members/${userId}`, {
-			headers: {
-				Authorization: 'Bot ' + this.#token,
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				roles: [
-					...await this.getRoles(userId),
-					String(roleId)
-				]
-			}),
-			method: 'PATCH'
+			method: 'PUT'
 		});
 	}
 
 	async removeRole(roleId, userId) {
-		const roles = await this.getRoles(userId);
-		roles.delete(roleId);
-
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/members/${userId}`, {
+		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/members/${userId}/roles/${roleId}`, {
 			headers: {
-				Authorization: 'Bot ' + this.#token,
-				'Content-Type': 'application/json'
+				Authorization: 'Bot ' + this.#token
 			},
-			body: JSON.stringify({
-				roles: [
-					...roles
-				]
-			}),
-			method: 'PATCH'
+			method: 'DELETE'
 		});
 	}
 
@@ -92,6 +64,22 @@ export class Guild {
 				Authorization: 'Bot ' + this.#token
 			},
 			method: 'DELETE',
+		});
+	}
+
+	createChannel(name, type = 0, categoryId = null) {
+		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/channels`, {
+			headers: {
+				Authorization: 'Bot ' + this.#token,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				type: type,
+				name: name,
+				permission_overwrites: [],
+				parent_id: String(categoryId)
+			}),
+			method: 'POST'
 		});
 	}
 

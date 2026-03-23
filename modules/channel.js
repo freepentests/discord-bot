@@ -47,23 +47,6 @@ export class Channel {
 		});
 	}
 
-	/*
-	createChannel(name, guildId, type = 0, categoryId = null) {
-		return fetch(`https://discord.com/api/v9/guilds/${guildId}/channels`, {
-			headers: {
-				Authorization: 'Bot ' + this.#token
-			},
-			body: JSON.stringify({
-				type: type,
-				name: name,
-				permission_overwrites: [],
-				parent_id: categoryId
-			}),
-			method: 'POST'
-		});
-	}
-	*/
-
 	delete() {
 		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
 			headers: {
