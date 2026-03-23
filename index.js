@@ -18,10 +18,10 @@ export class Client {
 				token: this.#token,
 				intents: this.intents,
 				properties: {
-         				$os: null,
-         				$browser: null,
-         				$device: null
-      				},
+					$os: null,
+					$browser: null,
+					$device: null
+				},
 				presence: {status: 'online', afk: false},
 			}
 		}));

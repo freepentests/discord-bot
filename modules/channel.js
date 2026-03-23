@@ -8,11 +8,11 @@ export class Channel {
 
 	startTyping() {
 		return fetch(`https://discord.com/api/v9/channels/${this.data.id}/typing`, {
-    			headers: {
-        			Authorization: 'Bot ' + this.#token,
+			headers: {
+				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
-    			},
-    			method: 'POST'
+			},
+			method: 'POST'
 		});
 	}
 
@@ -21,65 +21,65 @@ export class Channel {
 		if (before) url = `https://discord.com/api/v9/channels/${this.data.id}/messages?limit=${limit}&before=${before}`;
 
 		return fetch(url, {
-    			headers: {
-        			Authorization: 'Bot ' + this.#token,
+			headers: {
+				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
-    			},
-    			method: 'GET'
+			},
+			method: 'GET'
 		});
 	}
 
 	send(content, reference = null) {
 		return fetch(`https://discord.com/api/v9/channels/${this.data.id}/messages`, {
-    			headers: {
-        			Authorization: 'Bot ' + this.#token,
+			headers: {
+				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
-    			},
-    			body: JSON.stringify({
-	    			mobile_network_type: 'unknown',
-	    			content: content,
-	    			nonce: null,
-	    			tts: false,
-	    			message_reference: reference,
-	    			flags: 0
-    			}),
-    			method: 'POST'
+			},
+			body: JSON.stringify({
+				mobile_network_type: 'unknown',
+				content: content,
+				nonce: null,
+				tts: false,
+				message_reference: reference,
+				flags: 0
+			}),
+			method: 'POST'
 		});
 	}
 
 	/*
 	createChannel(name, guildId, type = 0, categoryId = null) {
 		return fetch(`https://discord.com/api/v9/guilds/${guildId}/channels`, {
-    			headers: {
-        			Authorization: 'Bot ' + this.#token
-    			},
+			headers: {
+				Authorization: 'Bot ' + this.#token
+			},
 			body: JSON.stringify({
 				type: type,
 				name: name,
 				permission_overwrites: [],
 				parent_id: categoryId
 			}),
-    			method: 'POST'
+			method: 'POST'
 		});
 	}
 	*/
 
 	delete() {
 		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
-    			headers: {
-        			Authorization: 'Bot ' + this.#token
-    			},
-    			method: 'DELETE'
+			headers: {
+				Authorization: 'Bot ' + this.#token
+			},
+			method: 'DELETE'
 		});
 	}
 
 	createInvite(maxAge = 0, maxUses = 0) {
 		return fetch(`https://discord.com/api/v9/channels/${this.data.id}/invites`, {
-    			headers: {
-        			Authorization: 'Bot ' + this.#token,
+			headers: {
+				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
-    			},
-    			body: JSON.stringify({
+			},
+			body: JSON.stringify({
 				validate: null,
 				max_age: maxAge,
 				max_uses: maxUses,
@@ -88,7 +88,7 @@ export class Channel {
 				temporary: false,
 				flags: 0
 			}),
-    			method: 'POST'
+			method: 'POST'
 		});
 	}
 }

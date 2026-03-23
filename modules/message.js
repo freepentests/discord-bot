@@ -26,24 +26,24 @@ export class Message {
 
 	delete() {
 		return fetch(`https://discord.com/api/v9/channels/${this.data.channel_id}/messages/${this.data.id}`, {
-    			headers: {
-        			Authorization: 'Bot ' + this.#token,
+			headers: {
+				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
-    			},
-    			method: 'DELETE'
+			},
+			method: 'DELETE'
 		});
 	}
 
 	editMessage(newContent) {
 		return fetch(`https://discord.com/api/v9/channels/${this.data.channel_id}/messages/${this.data.id}`, {
-    			headers: {
-        			Authorization: 'Bot ' + this.#token,
+			headers: {
+				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
-    			},
+			},
 			body: JSON.stringify({
 				content: newContent
 			}),
-    			method: 'PATCH'
+			method: 'PATCH'
 		});
 	}
 }
