@@ -1,4 +1,8 @@
 import { Message } from './modules/message.js';
+import { Channel } from './modules/channel.js';
+import { Guild } from './modules/guild.js';
+
+export { Message, Channel, Guild };
 
 export class Client {
 	#token;
@@ -38,6 +42,26 @@ export class Client {
 					callback(new Message(this.#token, data.d));
 					break;
 
+				case 'MESSAGE_DELETE':
+					callback(new Message(this.#token, data.d));
+					break;
+
+				case 'MESSAGE_UPDATE':
+					callback(new Message(this.#token, data.d));
+					break;
+
+				case 'CHANNEL_CREATE':
+					callback(new Channel(this.#token, data.d));
+					break;
+
+				case 'CHANNEL_DELETE':
+					callback(new Channel(this.#token, data.d));
+					break;
+
+				case 'CHANNEL_UPDATE':
+					callback(new Channel(this.#token, data.d));
+					break;
+
 				default:
 					callback(data.d);
 					break;
@@ -46,10 +70,12 @@ export class Client {
 	}
 
 	sendHeartbeat() {
-		this.ws.send(JSON.stringify({
-			op: 1,
-			d: null
-		}));
+		if (this.ws.readyState === 1) {
+			this.ws.send(JSON.stringify({
+				op: 1,
+				d: null
+			}));
+		}
 	}
 
 	connect() {

@@ -1,9 +1,15 @@
+import { Guild } from './guild.js';
+
 export class Channel {
 	#token;
 
 	constructor(token, data) {
 		this.#token = token;
 		this.data = data;
+
+		this.guild = new Guild(this.#token, {
+			id: this.data.guild_id
+		});
 	}
 
 	startTyping() {
