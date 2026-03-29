@@ -1,7 +1,7 @@
 {
-  "name": "discord-sb",
+  "name": "discord-bot-lib",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Discord bot library that uses Discord's HTTP API and Discord's Gateway API to receive events and send messages automatically from a bot account. ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +11,8 @@
     "url": "git+https://github.com/freepentests/discord-sb.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "freepentests",
+  "license": "GPLv3",
   "type": "module",
   "bugs": {
     "url": "https://github.com/freepentests/discord-sb/issues"
