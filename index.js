@@ -1,8 +1,9 @@
 import { Message } from './modules/message.js';
 import { Channel } from './modules/channel.js';
 import { Guild } from './modules/guild.js';
+import { EmbedBuilder } from './modules/embed.js';
 
-export { Message, Channel, Guild };
+export { Message, Channel, Guild, EmbedBuilder };
 
 export class Client {
 	#token;

@@ -23,6 +23,8 @@ class EmbedField {
 
 export class EmbedBuilder {
 	constructor() {
+		this.image = {};
+
 		this.title = null;
 		this.description = null;
 		this.url = null;
@@ -74,7 +76,7 @@ export class EmbedBuilder {
 	}
 
 	addField(name, value, inline = false) {
-		this.fields.append(new EmbedField(
+		this.fields.push(new EmbedField(
 			name,
 			value,
 			inline
