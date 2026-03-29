@@ -2,8 +2,9 @@ import { Message } from './modules/message.js';
 import { Channel } from './modules/channel.js';
 import { Guild } from './modules/guild.js';
 import { EmbedBuilder } from './modules/embed.js';
+import { PollBuilder } from './modules/poll.js';
 
-export { Message, Channel, Guild, EmbedBuilder };
+export { Message, Channel, Guild, EmbedBuilder, PollBuilder };
 
 export class Client {
 	#token;
