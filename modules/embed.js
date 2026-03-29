@@ -75,6 +75,14 @@ export class EmbedBuilder {
 		this.author.icon_url = newIconUrl;
 	}
 
+	setFooterText(newText) {
+		this.footer.text = newText;
+	}
+
+	setFooterIconUrl(newIconUrl) {
+		this.footer.icon_url = newIconUrl;
+	}
+
 	addField(name, value, inline = false) {
 		this.fields.push(new EmbedField(
 			name,
