@@ -23,6 +23,7 @@ export class PollBuilder {
 	addAnswer(text, emoji) {
 		const pollMedia = { text: text };
 		if (emoji) pollMedia.emoji = emoji;
+
 		this.answers.push({
 			poll_media: pollMedia
 		});
