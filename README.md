@@ -21,7 +21,7 @@ const client = new Client(TOKEN);
 
 ## TODO:
 - [x] Add embed support
-- [ ] Add support for creating polls
+- [x] Add support for creating polls
 - [ ] Add support for files in messages
 - [ ] Let bots add and remove reactions
 - [ ] Add support for stickers
