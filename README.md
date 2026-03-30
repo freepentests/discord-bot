@@ -22,7 +22,7 @@ const client = new Client(TOKEN);
 ## TODO:
 - [x] Add embed support
 - [x] Add support for creating polls
-- [ ] Add support for files in messages
+- [ ] Add support for attachments in messages
 - [x] Let bots add and remove reactions
 - [ ] Add support for stickers
 - [ ] Make it easier for people to update role and channel permissions
