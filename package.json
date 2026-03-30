@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/freepentests/discord-sb.git"
+    "url": "git+https://github.com/freepentests/discord-bot.git"
   },
   "keywords": [],
   "author": "freepentests",
   "license": "GPLv3",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/freepentests/discord-sb/issues"
+    "url": "https://github.com/freepentests/discord-bot/issues"
   },
-  "homepage": "https://github.com/freepentests/discord-sb#readme"
+  "homepage": "https://github.com/freepentests/discord-bot#readme"
 }
