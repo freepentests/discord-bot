@@ -7,11 +7,9 @@ export class Attachment {
 	constructor(filename, token) {
 		this.data = readFileSync(filename);
 		this.fileSize = this.data.length;
-		this.filename = filename;
+		this.filename = filename.split('/').slice(-1)[0];
 		this.mimeType = getMimeType(this.filename);
 		this.#token = token;
-
-		console.log(this.data, this.fileSize);
 	}
 	
 	async upload(channelId) {
