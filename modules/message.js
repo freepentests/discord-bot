@@ -46,5 +46,23 @@ export class Message {
 			method: 'PATCH'
 		});
 	}
+
+	react(emoji) {
+		return fetch(`https://discord.com/api/v9/channels/${this.data.channel_id}/messages/${this.data.id}/reactions/${emoji}/@me`, {
+    			headers: {
+        			Authorization: 'Bot ' + this.#token
+    			},
+    			method: 'PUT'
+		});
+	}
+
+	unreact(emoji) {
+		return fetch(`https://discord.com/api/v9/channels/${this.data.channel_id}/messages/${this.data.id}/reactions/${emoji}/@me`, {
+    			headers: {
+        			Authorization: 'Bot ' + this.#token
+    			},
+    			method: 'DELETE'
+		});
+	}
 }
 
