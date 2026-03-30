@@ -13,6 +13,7 @@ export class Client {
 	constructor(token, intents = 32767) {
 		this.#token = token;
 		this.intents = intents;
+		this.user = {};
 		this.ws;
 
 		this.connect();
@@ -90,6 +91,11 @@ export class Client {
 
 		this.ws.onmessage = (msg) => {
 			const data = JSON.parse(msg.data);
+
+			if (data.op === 0 && data.t === 'READY') {
+				this.user = data.d.user;
+			}
+
 			if (data.op === 10) {
 				setInterval(this.sendHeartbeat.bind(this), data.d.heartbeat_interval * Math.random());
 			}
