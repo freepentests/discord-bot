@@ -24,9 +24,10 @@ const client = new Client(TOKEN);
 - [x] Add support for creating polls
 - [x] Add support for attachments in messages
 - [x] Let bots add and remove reactions
+- [ ] Add support for slash commands and message components
 - [ ] Add support for stickers
 - [ ] Make it easier for developers to update role and channel permissions
-- [ ] Add more channel options such as changing a channel's name, etc
+- [x] Add more channel options such as changing a channel's name, etc
 - [ ] Add documentation
 - [ ] Publish to NPM
 
