@@ -30,7 +30,7 @@ export class EmbedBuilder {
 		this.url = null;
 		this.timestamp = null;
 		this.image.url = null;
-		this.color = 0x000000;
+		this.color = null;
 		this.fields = [];
 
 		this.author = new EmbedAuthor(null, null, null);
