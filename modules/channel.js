@@ -81,5 +81,106 @@ export class Channel {
 			method: 'POST'
 		});
 	}
+
+	setName(newName) {
+		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+			headers: {
+				Authorization: 'Bot ' + this.#token,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				name: newName
+			}),
+			method: 'PATCH'
+		});
+	}
+
+	setTopic(newTopic) {
+		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+			headers: {
+				Authorization: 'Bot ' + this.#token,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				topic: newTopic
+			}),
+			method: 'PATCH'
+		});
+	}
+
+	setNsfwStatus(nsfw) {
+		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+			headers: {
+				Authorization: 'Bot ' + this.#token,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				nsfw: nsfw
+			}),
+			method: 'PATCH'
+		});
+	}
+
+	setSlowmode(seconds) {
+		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+			headers: {
+				Authorization: 'Bot ' + this.#token,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				rate_limit_per_user: seconds
+			}),
+			method: 'PATCH'
+		});
+	}
+
+	setBitrate(bits) {
+		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+			headers: {
+				Authorization: 'Bot ' + this.#token,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				bitrate: bits
+			}),
+			method: 'PATCH'
+		});
+	}
+
+	setUserLimit(userLimit) {
+		// 0 is for no limit
+		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+			headers: {
+				Authorization: 'Bot ' + this.#token,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				user_limit: userLimit
+			}),
+			method: 'PATCH'
+		});
+	}
+
+	setVideoQualityMode(mode) {
+		// mode can be 1 for auto and 2 for 720p
+		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+			headers: {
+				Authorization: 'Bot ' + this.#token,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				video_quality_mode: mode
+			}),
+			method: 'PATCH'
+		});
+	}
+
+	get() {
+		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+			headers: {
+				Authorization: 'Bot ' + this.#token,
+			}
+		});
+	}
 }
 

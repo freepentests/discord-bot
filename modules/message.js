@@ -64,5 +64,14 @@ export class Message {
     			method: 'DELETE'
 		});
 	}
+
+	get() {
+		return fetch(`https://discord.com/api/v9/channels/${this.data.channel_id}/messages/${this.data.id}`, {
+    			headers: {
+        			Authorization: 'Bot ' + this.#token
+    			},
+			method: 'GET'
+		});
+	}
 }
 
