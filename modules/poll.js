@@ -7,7 +7,7 @@ export class PollBuilder {
 		this.question = { text: null };
 	}
 
-	setPollText(newText) {
+	setText(newText) {
 		this.question.text = newText;
 	}
 
