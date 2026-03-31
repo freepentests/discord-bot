@@ -4,9 +4,9 @@ import { Guild } from './modules/guild.js';
 import { EmbedBuilder } from './modules/embed.js';
 import { PollBuilder } from './modules/poll.js';
 import { Attachment } from './modules/attachment.js';
-import { Interactions, Interaction } from './modules/interactions.js';
+import { Interactions, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder } from './modules/interactions.js';
 
-export { Message, Channel, Guild, EmbedBuilder, PollBuilder, Attachment, Interactions, Interaction };
+export { Message, Channel, Guild, EmbedBuilder, PollBuilder, Attachment, Interactions, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder };
 
 export class Client {
 	#token;

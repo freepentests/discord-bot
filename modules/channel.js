@@ -42,12 +42,7 @@ export class Channel {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				mobile_network_type: 'unknown',
 				content: content,
-				nonce: null,
-				tts: false,
-				message_reference: reference,
-				flags: 0,
 				...optionalArgs
 			}),
 			method: 'POST'
