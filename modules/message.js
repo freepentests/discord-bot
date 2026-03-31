@@ -16,12 +16,15 @@ export class Message {
 		});
 	}
 
-	reply(content, optionalArgs = null) {
-		return this.channel.send(content, {
-			channel_id: this.channel.id,
-			guild_id: this.guild.id,
-			message_id: this.data.id
-		}, optionalArgs)
+	reply(args) {
+		return this.channel.send({
+			message_reference: {
+				channel_id: this.channel.id,
+				guild_id: this.guild.id,
+				message_id: this.data.id
+			},
+			...args
+		});
 	}
 
 	delete() {
