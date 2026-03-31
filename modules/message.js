@@ -16,14 +16,14 @@ export class Message {
 		});
 	}
 
-	reply(args) {
+	reply(data) {
 		return this.channel.send({
 			message_reference: {
 				channel_id: this.channel.id,
 				guild_id: this.guild.id,
 				message_id: this.data.id
 			},
-			...args
+			...data
 		});
 	}
 
