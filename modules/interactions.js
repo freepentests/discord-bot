@@ -1,3 +1,4 @@
+import { DiscordApi } from './discordApi.js';
 import { Channel } from './channel.js';
 import { Guild } from './guild.js'
 
@@ -255,15 +256,18 @@ export class Interaction {
 	constructor(token, data) {
 		this.#token = token;
 
+		for (const key of Object.keys(data)) {
+			this[key] = data[key];
+		}
+
 		this.channel = new Channel(this.#token, data.channel);
 		this.guild = new Guild(this.#token, {
 			id: data.guild_id
 		});
-		this.data = data
 	}
 
 	interactionCallback(type, data) {
-		return fetch(`https://discord.com/api/v10/interactions/${this.data.id}/${this.data.token}/callback`, { // this.data.token is the interaction token, not the bot token
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v10/interactions/${this.id}/${this.token}/callback`, { // this.token is the interaction token, not the bot token
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -288,7 +292,7 @@ export class Interaction {
 export class Interactions {
 	static registerGlobalSlashCommand(applicationId, token, name, description = null, options = []) {
 		// https://docs.discord.com/developers/interactions/application-commands
-		return fetch(`https://discord.com/api/v10/applications/${applicationId}/commands`, {
+		return DiscordApi.fetch(token, `https://discord.com/api/v10/applications/${applicationId}/commands`, {
 			headers: {
 				Authorization: 'Bot ' + token,
 				'Content-Type': 'application/json'
@@ -300,6 +304,40 @@ export class Interactions {
 				options: options
 			}),
 			method: 'POST'
+		});
+	}
+
+	static registerGuildSlashCommand(applicationId, guildId, token, name, description = null, options = []) {
+		return DiscordApi.fetch(token, `https://discord.com/api/v10/applications/${applicationId}/guilds/${guildId}/commands`, {
+			headers: {
+				Authorization: 'Bot ' + token,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				name: name,
+				type: 2,
+				description: description,
+				options: options
+			}),
+			method: 'POST'
+		});
+	}
+
+	static deleteGlobalSlashCommand(applicationId, commandId, token) {
+		return DiscordApi.fetch(token, `https://discord.com/api/v10/applications/${applicationId}/commands/${commandId}`, {
+			headers: {
+				Authorization: 'Bot ' + token
+			},
+			method: 'DELETE'
+		});
+	}
+
+	static deleteGlobalGuildCommand(applicationId, guildId, commandId, token) {
+		return DiscordApi.fetch(token, `https://discord.comapi/v10/applications/${applicationId}/guilds/${guildId}/commands/${commandId}`, {
+			headers: {
+				Authorization: 'Bot ' + token
+			},
+			method: 'DELETE'
 		});
 	}
 }

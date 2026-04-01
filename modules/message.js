@@ -1,3 +1,4 @@
+import { DiscordApi } from './discordApi.js';
 import { Channel } from './channel.js';
 import { Guild } from './guild.js';
 
@@ -6,13 +7,16 @@ export class Message {
 
 	constructor(token, data) {
 		this.#token = token;
-		this.data = data;
+
+		for (const key of Object.keys(data)) {
+			this[key] = data[key];
+		}
 
 		this.guild = new Guild(this.#token, {
-			id: this.data.guild_id
+			id: this.guild_id
 		});
 		this.channel = new Channel(this.#token, {
-			id: this.data.channel_id
+			id: this.channel_id
 		});
 	}
 
@@ -21,14 +25,14 @@ export class Message {
 			message_reference: {
 				channel_id: this.channel.id,
 				guild_id: this.guild.id,
-				message_id: this.data.id
+				message_id: this.id
 			},
 			...data
 		});
 	}
 
 	delete() {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.channel_id}/messages/${this.data.id}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.channel_id}/messages/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -38,7 +42,7 @@ export class Message {
 	}
 
 	editMessage(newContent) {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.channel_id}/messages/${this.data.id}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.channel_id}/messages/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -51,28 +55,28 @@ export class Message {
 	}
 
 	react(emoji) {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.channel_id}/messages/${this.data.id}/reactions/${emoji}/@me`, {
-    			headers: {
-        			Authorization: 'Bot ' + this.#token
-    			},
-    			method: 'PUT'
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.channel_id}/messages/${this.id}/reactions/${emoji}/@me`, {
+  			headers: {
+    			Authorization: 'Bot ' + this.#token
+  			},
+  			method: 'PUT'
 		});
 	}
 
 	unreact(emoji) {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.channel_id}/messages/${this.data.id}/reactions/${emoji}/@me`, {
-    			headers: {
-        			Authorization: 'Bot ' + this.#token
-    			},
-    			method: 'DELETE'
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.channel_id}/messages/${this.id}/reactions/${emoji}/@me`, {
+  			headers: {
+    			Authorization: 'Bot ' + this.#token
+  			},
+  			method: 'DELETE'
 		});
 	}
 
 	get() {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.channel_id}/messages/${this.data.id}`, {
-    			headers: {
-        			Authorization: 'Bot ' + this.#token
-    			},
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.channel_id}/messages/${this.id}`, {
+  			headers: {
+    			Authorization: 'Bot ' + this.#token
+  			},
 			method: 'GET'
 		});
 	}

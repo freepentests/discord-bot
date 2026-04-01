@@ -1,3 +1,4 @@
+import { DiscordApi } from './discordApi.js';
 import { readFileSync } from 'fs';
 import { getMimeType } from './mimeTypes.js';
 
@@ -24,7 +25,7 @@ export class Attachment {
     					}
   				]
 			});
-		const resp = await fetch(`https://discord.com/api/v9/channels/${channelId}/attachments`, {
+		const resp = await DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${channelId}/attachments`, {
     			headers: {
         			Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -36,7 +37,7 @@ export class Attachment {
 		const uploadUrl = json.attachments[0].upload_url;
 		const uploadFilename = json.attachments[0].upload_filename;
 
-		await fetch(uploadUrl, {
+		await DiscordApi.fetch(this.#token, uploadUrl, {
     			headers: {
 				'Content-Type': 'application/octet-stream',
     			},

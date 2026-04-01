@@ -1,19 +1,23 @@
 import { Guild } from './guild.js';
+import { DiscordApi } from './discordApi.js';
 
 export class Channel {
 	#token;
 
 	constructor(token, data) {
 		this.#token = token;
-		this.data = data;
+
+		for (const key of Object.keys(data)) {
+			this[key] = data[key];
+		}
 
 		this.guild = new Guild(this.#token, {
-			id: this.data.guild_id
+			id: this.guild_id
 		});
 	}
 
 	startTyping() {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.id}/typing`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.id}/typing`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -23,10 +27,10 @@ export class Channel {
 	}
 
 	getMessages(limit = 10, before = null) {
-		let url = `https://discord.com/api/v9/channels/${this.data.id}/messages?limit=${limit}`;
-		if (before) url = `https://discord.com/api/v9/channels/${this.data.id}/messages?limit=${limit}&before=${before}`;
+		let url = `https://discord.com/api/v9/channels/${this.id}/messages?limit=${limit}`;
+		if (before) url = `https://discord.com/api/v9/channels/${this.id}/messages?limit=${limit}&before=${before}`;
 
-		return fetch(url, {
+		return DiscordApi.fetch(this.#token, url, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -36,7 +40,7 @@ export class Channel {
 	}
 
 	send(data) {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.id}/messages`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.id}/messages`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -47,7 +51,7 @@ export class Channel {
 	}
 
 	delete() {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token
 			},
@@ -56,7 +60,7 @@ export class Channel {
 	}
 
 	createInvite(maxAge = 0, maxUses = 0) {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.id}/invites`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.id}/invites`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -75,7 +79,7 @@ export class Channel {
 	}
 
 	setName(newName) {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -88,7 +92,7 @@ export class Channel {
 	}
 
 	setTopic(newTopic) {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -101,7 +105,7 @@ export class Channel {
 	}
 
 	setNsfwStatus(nsfw) {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -114,7 +118,7 @@ export class Channel {
 	}
 
 	setSlowmode(seconds) {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -127,7 +131,7 @@ export class Channel {
 	}
 
 	setBitrate(bits) {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -141,7 +145,7 @@ export class Channel {
 
 	setUserLimit(userLimit) {
 		// 0 is for no limit
-		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -155,7 +159,7 @@ export class Channel {
 
 	setVideoQualityMode(mode) {
 		// mode can be 1 for auto and 2 for 720p
-		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -168,7 +172,7 @@ export class Channel {
 	}
 
 	get() {
-		return fetch(`https://discord.com/api/v9/channels/${this.data.id}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 			}

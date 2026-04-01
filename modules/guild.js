@@ -1,13 +1,18 @@
+import { DiscordApi } from './discordApi.js';
+
 export class Guild {
 	#token;
 
 	constructor(token, data) {
 		this.#token = token;
-		this.data = data
+
+		for (const key of Object.keys(data)) {
+			this[key] = data[key];
+		}
 	}
 
 	async addRole(roleId, userId) {
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/members/${userId}/roles/${roleId}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/guilds/${this.id}/members/${userId}/roles/${roleId}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token
 			},
@@ -16,7 +21,7 @@ export class Guild {
 	}
 
 	async removeRole(roleId, userId) {
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/members/${userId}/roles/${roleId}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/guilds/${this.id}/members/${userId}/roles/${roleId}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token
 			},
@@ -25,7 +30,7 @@ export class Guild {
 	}
 
 	createRole(name = 'new role', color = 0x000000) {
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/roles`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/guilds/${this.id}/roles`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -46,7 +51,7 @@ export class Guild {
 
 	updateRolePerms(roleId, permissions) {
 		// perms are at https://docs.discord.com/developers/topics/permissions
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/roles/${roleId}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/guilds/${this.id}/roles/${roleId}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -59,7 +64,7 @@ export class Guild {
 	}
 
 	deleteRole(roleId) {
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/roles/${roleId}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/guilds/${this.id}/roles/${roleId}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token
 			},
@@ -68,7 +73,7 @@ export class Guild {
 	}
 
 	createChannel(name, type = 0, categoryId = null) {
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/channels`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/guilds/${this.id}/channels`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -77,14 +82,14 @@ export class Guild {
 				type: type,
 				name: name,
 				permission_overwrites: [],
-				parent_id: String(categoryId)
+				parent_id: categoryId
 			}),
 			method: 'POST'
 		});
 	}
 
 	ban(userId, deleteMessageSeconds) {
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/bans/${userId}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/guilds/${this.id}/bans/${userId}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -97,7 +102,7 @@ export class Guild {
 	}
 
 	kick(userId) {
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/members/${userId}?reason=`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/guilds/${this.id}/members/${userId}?reason=`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 			},
@@ -109,7 +114,7 @@ export class Guild {
 		const now = new Date();
 		now.setSeconds(now.getSeconds() + seconds);
 
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/members/${userId}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/guilds/${this.id}/members/${userId}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -122,7 +127,7 @@ export class Guild {
 	}
 
 	untimeout(userId) {
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/members/${userId}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/guilds/${this.id}/members/${userId}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -135,7 +140,7 @@ export class Guild {
 	}
 
 	changeNickname(userId, nickname) {
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/members/${userId}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/guilds/${this.id}/members/${userId}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -148,7 +153,7 @@ export class Guild {
 	}
 
 	unban(userId) {
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/bans/${userId}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/guilds/${this.id}/bans/${userId}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token
 			},
@@ -157,7 +162,7 @@ export class Guild {
 	}
 
 	createEmoji(name, image) {
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/emojis`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/guilds/${this.id}/emojis`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -171,7 +176,7 @@ export class Guild {
 	}
 
 	deleteEmoji(emojiId) {
-		return fetch(`https://discord.com/api/v9/guilds/${this.data.id}/emojis/${emojiId}`, {
+		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/guilds/${this.id}/emojis/${emojiId}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token
 			},
