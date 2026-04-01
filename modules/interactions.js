@@ -255,19 +255,15 @@ export class Interaction {
 	constructor(token, data) {
 		this.#token = token;
 
-		this.interactionToken = data.token;
-		this.id = data.id;
-		this.member = data.member;
-		this.message = data.message;
 		this.channel = new Channel(this.#token, data.channel);
 		this.guild = new Guild(this.#token, {
 			id: data.guild_id
 		});
-		this.data = data.data;
+		this.data = data
 	}
 
 	interactionCallback(type, data) {
-		return fetch(`https://discord.com/api/v10/interactions/${this.id}/${this.interactionToken}/callback`, {
+		return fetch(`https://discord.com/api/v10/interactions/${this.data.id}/${this.data.token}/callback`, { // this.data.token is the interaction token, not the bot token
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
