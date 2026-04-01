@@ -3,9 +3,10 @@ import { Channel } from './modules/channel.js';
 import { Guild } from './modules/guild.js';
 import { EmbedBuilder } from './modules/embed.js';
 import { PollBuilder } from './modules/poll.js';
-import { Attachment } from './modules/attachment.js'
+import { Attachment } from './modules/attachment.js';
+import { Interactions, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder } from './modules/interactions.js';
 
-export { Message, Channel, Guild, EmbedBuilder, PollBuilder, Attachment };
+export { Message, Channel, Guild, EmbedBuilder, PollBuilder, Attachment, Interactions, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder };
 
 export class Client {
 	#token;
@@ -42,6 +43,10 @@ export class Client {
 			if (data.t !== eventName) return;
 
 			switch (data.t) {
+				case 'INTERACTION_CREATE':
+					callback(new Interaction(this.#token, data.d));
+					break;
+
 				case 'MESSAGE_CREATE':
 					callback(new Message(this.#token, data.d));
 					break;

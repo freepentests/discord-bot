@@ -41,14 +41,7 @@ export class Channel {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({
-				mobile_network_type: 'unknown',
-				nonce: null,
-				tts: false,
-				message_reference: reference,
-				flags: 0,
-				...data
-			}),
+			body: JSON.stringify(data),
 			method: 'POST'
 		});
 	}
