@@ -16,27 +16,9 @@ export class DiscordApi {
 
 		if (status - 200 < 0 || status - 200 >= 100) throw new DiscordApiError(`Received non-2xx response code from Discord API: ${status}`)
 
-		if (contentType !== 'application/json') {
-			return resp.text();
-		} else {
-			const json = await resp.json();
-			return DiscordApi.getObject(token, json);
-		}
+		if (contentType !== 'application/json') return resp.text();
+		else return resp.json();
 
-	}
-
-	static getObject(token, json) {
-		const keys = Object.keys(json);
-
-		if (keys.includes('content')) {
-			return new Message(token, json);
-		}
-
-		if (keys.includes('last_message_id')) {
-			return new Channel(token, json);
-		}
-
-		return json
 	}
 }
 

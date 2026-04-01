@@ -39,48 +39,59 @@ export class EmbedBuilder {
 
 	setTitle(newTitle) {
 		this.title = newTitle;
+		return this;
 	}
 
 	setDescription(newDescription) {
 		this.description = newDescription;
+		return this;
 	}
 
 	setUrl(newUrl) {
 		this.url = newUrl;
+		return this;
 	}
 
 	setTimestamp(unixTimestamp) { // this method accepts unix timestamps because they are way easier to work with than ISO strings
 		this.timestamp = new Date(unixTimestamp).toISOString(); 
+		return this;
 	}
 
 	setImageUrl(newImageUrl) {
 		this.image.url = newImageUrl;
+		return this;
 	}
 
 	setColor(newColor) {
 		if (typeof newColor === 'string') this.color = parseInt(newColor.slice(1), 16); // for people who like CSS
 		else if (typeof newColor === 'number') this.color = newColor;
 		else throw new TypeError('newColor must be a number or a string');
+		return this;
 	}
 
 	setAuthorName(newName) {
 		this.author.name = newName;
+		return this;
 	}
 
 	setAuthorUrl(newUrl) {
 		this.author.url = newUrl;
+		return this;
 	}
 
 	setAuthorIconUrl(newIconUrl) {
 		this.author.icon_url = newIconUrl;
+		return this;
 	}
 
 	setFooterText(newText) {
 		this.footer.text = newText;
+		return this;
 	}
 
 	setFooterIconUrl(newIconUrl) {
 		this.footer.icon_url = newIconUrl;
+		return this;
 	}
 
 	addField(name, value, inline = false) {
@@ -89,6 +100,7 @@ export class EmbedBuilder {
 			value,
 			inline
 		));
+		return this;
 	}
 }
 

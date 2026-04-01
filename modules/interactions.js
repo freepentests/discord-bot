@@ -12,14 +12,17 @@ export class ModalBuilder {
 
 	setTitle(title) {
 		this.title = title;
+		return this;
 	}
 
 	setCustomId(customId) {
 		this.custom_id = customId;
+		return this;
 	}
 
 	addComponent(component) {
 		this.components.push(component);
+		return this;
 	}
 }
 
@@ -40,30 +43,37 @@ export class TextInputComponentBuilder {
 
 	setCustomId(customId) {
 		this.custom_id = customId;
+		return this;
 	}
 
 	setStyle(style) {
 		this.style = style;
+		return this;
 	}
 
 	setId(id) {
 		this.id = id;
+		return this;
 	}
 
 	setMinLength(minLength) {
 		this.min_length = minLength;
+		return this;
 	}
 
 	setMaxLength(maxLength) {
 		this.max_length = maxLength;
+		return this;
 	}
 
 	setRequired(required) {
 		this.required = required;
+		return this;
 	}
 
 	setValue(value) {
 		this.value = value;
+		return this;
 	}
 }
 
@@ -81,18 +91,22 @@ export class LabelComponentBuilder {
 
 	setLabel(label) {
 		this.label = label;
+		return this;
 	}
 
 	setComponent(component) {
 		this.component = component;
+		return this;
 	}
 
 	setId(id) {
 		this.id = id;
+		return this;
 	}
 
 	setDescription(description) {
 		this.description = description;
+		return this;
 	}
 }
 
@@ -105,6 +119,7 @@ export class TextDisplayComponentBuilder {
 
 	setContent(content) {
 		this.content = content;
+		return this;
 	}
 }
 
@@ -126,30 +141,37 @@ export class ButtonComponentBuilder {
 
 	setCustomId(customId) {
 		this.custom_id = customId;
+		return this;
 	}
 
 	setStyle(style) {
 		this.style = style;
+		return this;
 	}
 
 	setId(id) {
 		this.id = id;
+		return this;
 	}
 
 	setLabel(label) {
 		this.label = label;
+		return this;
 	}
 
 	setSkuId(skuId) {
 		this.sku_id = skuId;
+		return this;
 	}
 
 	setUrl(url) {
 		this.url = url;
+		return this;
 	}
 
 	setDisabled(disabled) {
 		this.disabled = disabled;
+		return this;
 	}
 }
 
@@ -165,6 +187,7 @@ export class ActionRowComponentBuilder {
 
 	addComponent(component) {
 		this.components.push(component);
+		return this;
 	}
 }
 
@@ -186,34 +209,42 @@ export class StringSelectComponentBuilder {
 
 	addOption(data) {
 		this.options.push(data);
+		return this;
 	}
 
 	setCustomId(customId) {
 		this.custom_id = customId;
+		return this;
 	}
 
 	setId(id) {
 		this.id = id;
+		return this;
 	}
 
 	setPlaceholder(placeholder) {
 		this.placeholder = placeholder;
+		return this;
 	}
 
 	setMinValues(minValues) {
 		this.min_values = minValues;
+		return this;
 	}
 
 	setMaxValues(maxValues) {
 		this.max_values = maxValues;
+		return this;
 	}
 
 	setRequired(required) {
 		this.required = required;
+		return this;
 	}
 
 	setDisabled(disabled) {
 		this.disabled = disabled;
+		return this;
 	}
 }
 
@@ -231,22 +262,27 @@ export class StringSelectOptionBuilder {
 
 	setLabel(label) {
 		this.label = label;
+		return this;
 	}
 
 	setValue(value) {
 		this.value = value;
+		return this;
 	}
 
 	setDescription(description) {
 		this.description = description;
+		return this;
 	}
 
 	setEmoji(emoji) {
 		this.emoji = emoji;
+		return this;
 	}
 
 	setDefault(isDefault) { // named this to isDefault instead of just default because default is a JavaScript keyword used in switch statements and therefore can't be the name of a parameter
 		this.default = isDefault;
+		return this;
 	}
 }
 
@@ -267,7 +303,7 @@ export class Interaction {
 	}
 
 	interactionCallback(type, data) {
-		return DiscordApi.fetch(this.#token, `https://discord.com/api/v10/interactions/${this.id}/${this.token}/callback`, { // this.token is the interaction token, not the bot token
+		return DiscordApi.fetch(`https://discord.com/api/v10/interactions/${this.id}/${this.token}/callback`, { // this.token is the interaction token, not the bot token
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'

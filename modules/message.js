@@ -32,17 +32,17 @@ export class Message {
 	}
 
 	delete() {
-		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.channel_id}/messages/${this.id}`, {
+		return new Message(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.channel_id}/messages/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
 			},
 			method: 'DELETE'
-		});
+		}));
 	}
 
 	editMessage(newContent) {
-		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.channel_id}/messages/${this.id}`, {
+		return new Message(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.channel_id}/messages/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -51,11 +51,11 @@ export class Message {
 				content: newContent
 			}),
 			method: 'PATCH'
-		});
+		}));
 	}
 
 	react(emoji) {
-		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.channel_id}/messages/${this.id}/reactions/${emoji}/@me`, {
+		return DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.channel_id}/messages/${this.id}/reactions/${emoji}/@me`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token
 			},
@@ -64,7 +64,7 @@ export class Message {
 	}
 
 	unreact(emoji) {
-		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.channel_id}/messages/${this.id}/reactions/${emoji}/@me`, {
+		return DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.channel_id}/messages/${this.id}/reactions/${emoji}/@me`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token
 			},
@@ -73,12 +73,12 @@ export class Message {
 	}
 
 	get() {
-		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.channel_id}/messages/${this.id}`, {
+		return new Message(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.channel_id}/messages/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token
 			},
 			method: 'GET'
-		});
+		}));
 	}
 }
 

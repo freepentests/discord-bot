@@ -25,7 +25,7 @@ export class Attachment {
 				}
 			]
 		});
-		const json = await DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${channelId}/attachments`, {
+		const json = await DiscordApi.fetch(`https://discord.com/api/v10/channels/${channelId}/attachments`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ export class Attachment {
 		const uploadUrl = json.attachments[0].upload_url;
 		const uploadFilename = json.attachments[0].upload_filename;
 
-		await DiscordApi.fetch(this.#token, uploadUrl, {
+		await DiscordApi.fetch(uploadUrl, {
 			headers: {
 				'Content-Type': 'application/octet-stream',
 			},

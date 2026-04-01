@@ -104,7 +104,7 @@ export class Client {
 			}
 
 			if (data.op === 10) {
-				setInterval(this.sendHeartbeat.bind(this), data.d.heartbeat_interval * Math.random());
+				setInterval(this.sendHeartbeat.bind(this), data.d.heartbeat_interval * (0.8 + Math.random() * 0.4));
 			}
 		}
 
