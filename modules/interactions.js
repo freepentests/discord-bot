@@ -114,7 +114,7 @@ export class ButtonComponentBuilder {
 		this.type = 2;
 		this.style = 1;
 		this.custom_id = null;
-		
+
 		// OPTIONAL FIELDS
 		this.id = null;
 		this.label = null;
@@ -315,7 +315,7 @@ export class Interactions {
 			},
 			body: JSON.stringify({
 				name: name,
-				type: 2,
+				type: 1,
 				description: description,
 				options: options
 			}),
@@ -332,8 +332,8 @@ export class Interactions {
 		});
 	}
 
-	static deleteGlobalGuildCommand(applicationId, guildId, commandId, token) {
-		return DiscordApi.fetch(token, `https://discord.comapi/v10/applications/${applicationId}/guilds/${guildId}/commands/${commandId}`, {
+	static deleteGuildSlashCommand(applicationId, guildId, commandId, token) {
+		return DiscordApi.fetch(token, `https://discord.com/api/v10/applications/${applicationId}/guilds/${guildId}/commands/${commandId}`, {
 			headers: {
 				Authorization: 'Bot ' + token
 			},

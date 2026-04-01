@@ -56,27 +56,27 @@ export class Message {
 
 	react(emoji) {
 		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.channel_id}/messages/${this.id}/reactions/${emoji}/@me`, {
-  			headers: {
-    			Authorization: 'Bot ' + this.#token
-  			},
-  			method: 'PUT'
+			headers: {
+				Authorization: 'Bot ' + this.#token
+			},
+			method: 'PUT'
 		});
 	}
 
 	unreact(emoji) {
 		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.channel_id}/messages/${this.id}/reactions/${emoji}/@me`, {
-  			headers: {
-    			Authorization: 'Bot ' + this.#token
-  			},
-  			method: 'DELETE'
+			headers: {
+				Authorization: 'Bot ' + this.#token
+			},
+			method: 'DELETE'
 		});
 	}
 
 	get() {
 		return DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${this.channel_id}/messages/${this.id}`, {
-  			headers: {
-    			Authorization: 'Bot ' + this.#token
-  			},
+			headers: {
+				Authorization: 'Bot ' + this.#token
+			},
 			method: 'GET'
 		});
 	}

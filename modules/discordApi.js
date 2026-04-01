@@ -22,7 +22,7 @@ export class DiscordApi {
 			const json = await resp.json();
 			return DiscordApi.getObject(token, json);
 		}
-		
+
 	}
 
 	static getObject(token, json) {
@@ -34,14 +34,6 @@ export class DiscordApi {
 
 		if (keys.includes('last_message_id')) {
 			return new Channel(token, json);
-		}
-
-		if (keys.includes('joined_at')) {
-			return new User(token, json);
-		}
-
-		if (keys.includes('mentionable')) {
-			return new Role(token, json);
 		}
 
 		return json

@@ -12,37 +12,37 @@ export class Attachment {
 		this.mimeType = getMimeType(this.filename);
 		this.#token = token;
 	}
-	
+
 	async upload(channelId) {
 		const body = JSON.stringify({
-  				files: [
-    					{
-      						filename: this.filename,
-      						file_size: this.fileSize,
-      						id: null,
-      						is_clip: false,
-      						original_content_type: this.mimeType
-    					}
-  				]
-			});
-		const resp = await DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${channelId}/attachments`, {
-    			headers: {
-        			Authorization: 'Bot ' + this.#token,
+			files: [
+				{
+					filename: this.filename,
+					file_size: this.fileSize,
+					id: null,
+					is_clip: false,
+					original_content_type: this.mimeType
+				}
+			]
+		});
+		const json = await DiscordApi.fetch(this.#token, `https://discord.com/api/v9/channels/${channelId}/attachments`, {
+			headers: {
+				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
 			},
-    			body: body,
+			body: body,
 			method: 'POST'
 		});
-		const json = await resp.json();
+
 		const uploadUrl = json.attachments[0].upload_url;
 		const uploadFilename = json.attachments[0].upload_filename;
 
 		await DiscordApi.fetch(this.#token, uploadUrl, {
-    			headers: {
+			headers: {
 				'Content-Type': 'application/octet-stream',
-    			},
-    			body: this.data,
-    			method: 'PUT'
+			},
+			body: this.data,
+			method: 'PUT'
 		});
 
 		this.id = '0';
