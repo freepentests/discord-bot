@@ -1,3 +1,100 @@
+import { Channel } from './channel.js';
+import { Guild } from './guild.js'
+
+export class ModalBuilder {
+	constructor() {
+		this.custom_id = null;
+		this.title = null;
+
+		this.components = [];
+	}
+
+	setTitle(title) {
+		this.title = title;
+	}
+
+	setCustomId(customId) {
+		this.custom_id = customId;
+	}
+
+	addComponent(component) {
+		this.components.push(component);
+	}
+}
+
+export class TextInputComponentBuilder {
+	constructor() {
+		// REQUIRED FIELDS
+		this.type = 4;
+		this.custom_id = null;
+		this.style = 1; // 1 is for single-line input, 2 is for multi-line input
+
+		// OPTIONAL FIELDS
+		this.id = null;
+		this.min_length = null;
+		this.max_length = null;
+		this.required = null;
+		this.value = null;
+	}
+
+	setCustomId(customId) {
+		this.custom_id = customId;
+	}
+
+	setStyle(style) {
+		this.style = style;
+	}
+
+	setId(id) {
+		this.id = id;
+	}
+
+	setMinLength(minLength) {
+		this.min_length = minLength;
+	}
+
+	setMaxLength(maxLength) {
+		this.max_length = maxLength;
+	}
+
+	setRequired(required) {
+		this.required = required;
+	}
+
+	setValue(value) {
+		this.value = value;
+	}
+}
+
+export class LabelComponentBuilder {
+	constructor() {
+		// REQUIRED FIELDS
+		this.type = 18;
+		this.label = null;
+		this.component = null;
+
+		// OPTIONAL FIELDS
+		this.id = null;
+		this.description = null;
+	}
+
+	setLabel(label) {
+		this.label = label;
+	}
+
+	setComponent(component) {
+		this.component = component;
+	}
+
+	setId(id) {
+		this.id = id;
+	}
+
+	setDescription(description) {
+		this.description = description;
+	}
+}
+
 export class TextDisplayComponentBuilder {
 	constructor() {
 		// REQUIRED FIELDS
@@ -119,6 +216,39 @@ export class StringSelectComponentBuilder {
 	}
 }
 
+export class StringSelectOptionBuilder {
+	constructor() {
+		// REQUIRED FIELDS
+		this.label = null;
+		this.value = null; // Dev-defined value of the option; max 100 characters
+
+		// OPTIONAL FIELDS
+		this.description = null;
+		this.emoji = null;
+		this.default = null; 
+	}
+
+	setLabel(label) {
+		this.label = label;
+	}
+
+	setValue(value) {
+		this.value = value;
+	}
+
+	setDescription(description) {
+		this.description = description;
+	}
+
+	setEmoji(emoji) {
+		this.emoji = emoji;
+	}
+
+	setDefault(isDefault) { // named this to isDefault instead of just default because default is a JavaScript keyword used in switch statements and therefore can't be the name of a parameter
+		this.default = isDefault;
+	}
+}
+
 export class Interaction {
 	#token;
 
@@ -127,21 +257,35 @@ export class Interaction {
 
 		this.interactionToken = data.token;
 		this.id = data.id;
+		this.member = data.member;
+		this.message = data.message;
+		this.channel = new Channel(this.#token, data.channel);
+		this.guild = new Guild(this.#token, {
+			id: data.guild_id
+		});
 		this.data = data.data;
 	}
 
-	reply(data) {
+	interactionCallback(type, data) {
 		return fetch(`https://discord.com/api/v10/interactions/${this.id}/${this.interactionToken}/callback`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				type: 4,
+				type: type,
 				data: data
 			}),
 			method: 'POST'
 		});
+	}
+
+	reply(data) {
+		return this.interactionCallback(4, data);
+	}
+
+	displayModal(data) {
+		return this.interactionCallback(9, data);
 	}
 }
 
