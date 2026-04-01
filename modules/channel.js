@@ -40,8 +40,8 @@ export class Channel {
 		});
 	}
 
-	send(data) {
-		return new Message(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}/messages`, {
+	async send(data) {
+		return new Message(this.#token, await DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}/messages`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -51,8 +51,8 @@ export class Channel {
 		}));
 	}
 
-	delete() {
-		return new Channel(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
+	async delete() {
+		return new Channel(this.#token, await DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token
 			},
@@ -61,7 +61,7 @@ export class Channel {
 	}
 
 	createInvite(maxAge = 0, maxUses = 0) {
-		return new Channel(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}/invites`, {
+		return DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}/invites`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -76,11 +76,11 @@ export class Channel {
 				flags: 0
 			}),
 			method: 'POST'
-		}));
+		});
 	}
 
-	setName(newName) {
-		return new Channel(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
+	async setName(newName) {
+		return new Channel(this.#token, await DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -92,8 +92,8 @@ export class Channel {
 		}));
 	}
 
-	setTopic(newTopic) {
-		return new Channel(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
+	async setTopic(newTopic) {
+		return new Channel(this.#token, await DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -105,8 +105,8 @@ export class Channel {
 		}));
 	}
 
-	setNsfwStatus(nsfw) {
-		return new Channel(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
+	async setNsfwStatus(nsfw) {
+		return new Channel(this.#token, await DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -118,8 +118,8 @@ export class Channel {
 		}));
 	}
 
-	setSlowmode(seconds) {
-		return new Channel(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
+	async setSlowmode(seconds) {
+		return new Channel(this.#token, await DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -131,8 +131,8 @@ export class Channel {
 		}));
 	}
 
-	setBitrate(bits) {
-		return new Channel(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
+	async setBitrate(bits) {
+		return new Channel(this.#token, await DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -144,9 +144,9 @@ export class Channel {
 		}));
 	}
 
-	setUserLimit(userLimit) {
+	async setUserLimit(userLimit) {
 		// 0 is for no limit
-		return new Channel(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
+		return new Channel(this.#token, await DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -158,9 +158,9 @@ export class Channel {
 		}));
 	}
 
-	setVideoQualityMode(mode) {
+	async setVideoQualityMode(mode) {
 		// mode can be 1 for auto and 2 for 720p
-		return new Channel(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
+		return new Channel(this.#token, await DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -172,8 +172,8 @@ export class Channel {
 		}));
 	}
 
-	get() {
-		return new Channel(this.#token, DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
+	async get() {
+		return new Channel(this.#token, await DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 			}

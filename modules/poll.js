@@ -9,15 +9,18 @@ export class PollBuilder {
 
 	setText(newText) {
 		this.question.text = newText;
+		return this;
 	}
 
 	setDuration(newDuration) {
 		// note: max is 768
 		this.duration = newDuration;
+		return this;
 	}
 
 	setMultiselectEnabled(multiselectEnabled) {
 		this.allow_multiselect = multiselectEnabled;
+		return this;
 	}
 
 	addAnswer(text, emoji) {
@@ -27,6 +30,7 @@ export class PollBuilder {
 		this.answers.push({
 			poll_media: pollMedia
 		});
+		return this;
 	}
 }
 

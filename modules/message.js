@@ -31,8 +31,8 @@ export class Message {
 		});
 	}
 
-	delete() {
-		return new Message(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.channel_id}/messages/${this.id}`, {
+	async delete() {
+		return new Message(this.#token, await DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.channel_id}/messages/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -41,8 +41,8 @@ export class Message {
 		}));
 	}
 
-	editMessage(newContent) {
-		return new Message(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.channel_id}/messages/${this.id}`, {
+	async editMessage(newContent) {
+		return new Message(this.#token, await DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.channel_id}/messages/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
@@ -72,8 +72,8 @@ export class Message {
 		});
 	}
 
-	get() {
-		return new Message(DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.channel_id}/messages/${this.id}`, {
+	async get() {
+		return new Message(this.#token, await DiscordApi.fetch(`https://discord.com/api/v10/channels/${this.channel_id}/messages/${this.id}`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token
 			},

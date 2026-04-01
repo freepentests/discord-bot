@@ -55,8 +55,7 @@ const MIME_TYPES = {
 	iso: 'application/x-iso9660-image',
 	apk: 'application/vnd.android.package-archive',
 	dmg: 'application/x-apple-diskimage',
-	msi: 'application/x-msdownload',
-	css: 'text/css'
+	msi: 'application/x-msdownload'
 };
 
 export const getMimeType = (filename) => {

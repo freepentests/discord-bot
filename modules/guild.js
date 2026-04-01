@@ -73,8 +73,8 @@ export class Guild {
 		});
 	}
 
-	createChannel(name, type = 0, categoryId = null) {
-		return new Channel(DiscordApi.fetch(`https://discord.com/api/v10/guilds/${this.id}/channels`, {
+	async createChannel(name, type = 0, categoryId = null) {
+		return new Channel(this.#token, await DiscordApi.fetch(`https://discord.com/api/v10/guilds/${this.id}/channels`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'

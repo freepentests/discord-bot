@@ -9,7 +9,7 @@ class DiscordApiError extends Error {
 }
 
 export class DiscordApi {
-	static async fetch(token, ...args) {
+	static async fetch(...args) {
 		const resp = await fetch(...args);
 		const contentType = resp.headers.get('content-type');
 		const status = resp.status;
