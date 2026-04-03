@@ -325,6 +325,23 @@ export class Interaction {
 	}
 }
 
+export class SlashCommandBuilder {
+	constructor() {
+		this.name = null;
+		this.type = 1;
+		this.description = null;
+		this.options = [];
+	}
+
+	setName(name) {
+		this.name = name;
+	}
+
+	setDescription(description) {
+		this.name = name;
+	}
+}
+
 export class Interactions {
 	static registerGlobalSlashCommand(applicationId, token, name, description = null, options = []) {
 		// https://docs.discord.com/developers/interactions/application-commands
