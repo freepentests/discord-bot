@@ -14,7 +14,7 @@ export class DiscordApi {
 		const contentType = resp.headers.get('content-type');
 		const status = resp.status;
 
-		if (status - 200 < 0 || status - 200 >= 100) throw new DiscordApiError(`Received non-2xx response code from Discord API: ${status}`)
+		if (status - 200 < 0 || status - 200 >= 100) throw new DiscordApiError(`Received non-2xx response code from Discord API: ${status}\nError message: ${(await resp.json()).message}`);
 
 		if (contentType !== 'application/json') return resp.text();
 		else return resp.json();
