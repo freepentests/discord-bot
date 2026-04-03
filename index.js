@@ -5,14 +5,15 @@ import { EmbedBuilder } from './modules/embed.js';
 import { PollBuilder } from './modules/poll.js';
 import { Attachment } from './modules/attachment.js';
 import { Emoji } from './modules/emoji.js';
+import { ChannelPermissionBits, GatewayIntentBits } from './modules/bitFlags.js';
 import { Interactions, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder } from './modules/interactions.js';
 
-export { Message, Channel, Guild, EmbedBuilder, PollBuilder, Attachment, Interactions, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder, Emoji };
+export { Message, Channel, Guild, EmbedBuilder, PollBuilder, Attachment, Interactions, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder, Emoji, ChannelPermissionBits, GatewayIntentBits };
 
 export class Client {
 	#token;
 
-	constructor(token, intents = 32767) {
+	constructor(token, intents = 67108863) {
 		this.#token = token;
 		this.intents = intents;
 		this.user = {};

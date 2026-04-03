@@ -25,9 +25,10 @@ const client = new Client(TOKEN);
 - [x] Add support for attachments in messages
 - [x] Let bots add and remove reactions
 - [x] Add support for slash commands and message components
-- [ ] Make it easier for developers to update role and channel permissions
 - [x] Make a class for an emoji object
 - [x] Add more channel options such as changing a channel's name, etc
+- [ ] Make it easier for developers to update role and channel permissions
+- [ ] Add support for gateway compression with zlib-stream for more efficient network transmission
 - [ ] Add documentation
 - [ ] Publish to NPM
 
