@@ -4,9 +4,10 @@ import { Guild } from './modules/guild.js';
 import { EmbedBuilder } from './modules/embed.js';
 import { PollBuilder } from './modules/poll.js';
 import { Attachment } from './modules/attachment.js';
+import { Emoji } from './modules/emoji.js';
 import { Interactions, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder } from './modules/interactions.js';
 
-export { Message, Channel, Guild, EmbedBuilder, PollBuilder, Attachment, Interactions, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder };
+export { Message, Channel, Guild, EmbedBuilder, PollBuilder, Attachment, Interactions, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder, Emoji };
 
 export class Client {
 	#token;

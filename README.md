@@ -25,10 +25,8 @@ const client = new Client(TOKEN);
 - [x] Add support for attachments in messages
 - [x] Let bots add and remove reactions
 - [x] Add support for slash commands and message components
-- [ ] Add support for stickers
 - [ ] Make it easier for developers to update role and channel permissions
-- [ ] Make a class for an emoji object
-- [ ] Make the library easy for developers to use
+- [x] Make a class for an emoji object
 - [x] Add more channel options such as changing a channel's name, etc
 - [ ] Add documentation
 - [ ] Publish to NPM
