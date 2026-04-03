@@ -27,6 +27,7 @@ const client = new Client(TOKEN);
 - [x] Add support for slash commands and message components
 - [ ] Add support for stickers
 - [ ] Make it easier for developers to update role and channel permissions
+- [ ] Make a class for an emoji object
 - [ ] Make the library easy for developers to use
 - [x] Add more channel options such as changing a channel's name, etc
 - [ ] Add documentation
@@ -34,7 +35,7 @@ const client = new Client(TOKEN);
 
 ## Contribute
 
-You can contribute to this project on [GitHub](https://github.com/freepentests). Open a pull request or create an issue, and we will do our best to review it as soon as possible.
+You can contribute to this project on [GitHub](https://github.com/freepentests/discord-bot). Open a pull request or create an issue, and we will do our best to review it as soon as possible.
 
 ## LICENSE
 
