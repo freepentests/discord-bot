@@ -335,10 +335,12 @@ export class SlashCommandBuilder {
 
 	setName(name) {
 		this.name = name;
+		return this;
 	}
 
 	setDescription(description) {
 		this.name = name;
+		return this;
 	}
 }
 
