@@ -6,9 +6,9 @@ import { PollBuilder } from './modules/poll.js';
 import { Attachment } from './modules/attachment.js';
 import { Emoji } from './modules/emoji.js';
 import { ChannelPermissionBits, GatewayIntentBits } from './modules/bitFlags.js';
-import { Interactions, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder } from './modules/interactions.js';
+import { SlashCommands, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder, SlashCommandBuilder } from './modules/interactions.js';
 
-export { Message, Channel, Guild, EmbedBuilder, PollBuilder, Attachment, Interactions, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder, Emoji, ChannelPermissionBits, GatewayIntentBits };
+export { Message, Channel, Guild, EmbedBuilder, PollBuilder, Attachment, SlashCommands, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder, Emoji, ChannelPermissionBits, GatewayIntentBits, SlashCommandBuilder };
 
 export class Client {
 	#token;
