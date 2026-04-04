@@ -121,7 +121,7 @@ export class Client {
 			const eventType = json.t;
 			const data = json.d;
 
-			if (opcode === GATEWAY_OPCODES.DISPATCH && packet.eventType === 'READY') this.user = data.user;
+			if (opcode === GATEWAY_OPCODES.DISPATCH && eventType === 'READY') this.user = data.user;
 			if (opcode === GATEWAY_OPCODES.HELLO) this.beginHeartbeatInterval(data.heartbeat_interval);
 
 			this.#handleGatewayPacket({
