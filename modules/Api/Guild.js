@@ -1,5 +1,5 @@
-import { DiscordApi } from './discordApi.js';
-import { Channel } from './channel.js';
+import { DiscordApi } from './DiscordApi.js';
+import { Channel } from './Channel.js';
 
 export class Guild {
 	#token;

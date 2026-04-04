@@ -1,10 +1,12 @@
+
 export class PollBuilder {
 	constructor() {
 		this.allow_multiselect = false;
+		this.question = {
+			text: null
+		};
 		this.answers = [];
-		this.duration = 24;
-		this.layout_type = 1;
-		this.question = { text: null };
+		this.duration = 24; // duration is in hours
 	}
 
 	setText(newText) {
@@ -24,12 +26,15 @@ export class PollBuilder {
 	}
 
 	addAnswer(text, emoji) {
-		const pollMedia = { text: text };
+		const pollMedia = {
+			text: text
+		};
 		if (emoji) pollMedia.emoji = emoji;
 
 		this.answers.push({
 			poll_media: pollMedia
 		});
+
 		return this;
 	}
 }

@@ -1,4 +1,4 @@
-import { DiscordApi } from './discordApi.js';
+import { DiscordApi } from '../Api/DiscordApi.js';
 
 export class Webhook {
 	constructor(data) {
