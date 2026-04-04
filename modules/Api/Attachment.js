@@ -1,6 +1,6 @@
-import { DiscordApi } from './discordApi.js';
+import { DiscordApi } from './DiscordApi.js';
+import { getMimeType } from './MimeTypes.js';
 import { readFileSync } from 'fs';
-import { getMimeType } from './mimeTypes.js';
 
 export class Attachment {
 	#token;

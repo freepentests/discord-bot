@@ -1,17 +1,30 @@
-import { Message } from './modules/message.js';
-import { Interaction } from './modules/interactions.js';
-import { Channel } from './modules/channel.js';
+import { Message } from './modules/Api/Message.js';
+import { Channel } from './modules/Api/Channel.js';
+import { Interaction } from './modules/Interactions/Interaction.js';
 
-export * from './modules/guild.js';
-export * from './modules/embed.js';
-export * from './modules/poll.js';
-export * from './modules/attachment.js';
-export * from './modules/emoji.js';
-export * from './modules/webhook.js'; 
-export * from './modules/bitFlags.js';
-export * from './modules/interactions.js';
-export * from './modules/message.js';
-export * from './modules/channel.js';
+export * from './modules/Api/Guild.js';
+export * from './modules/Api/Attachment.js';
+export * from './modules/Api/Message.js';
+export * from './modules/Api/Channel.js';
+
+export * from './modules/BitFlags/GatewayIntentBits.js';
+export * from './modules/BitFlags/RolePermissionBits.js';
+
+export * from './modules/Interactions/ActionRowComponentBuilder.js';
+export * from './modules/Interactions/ButtonComponentBuilder.js';
+export * from './modules/Interactions/Interaction.js';
+export * from './modules/Interactions/LabelComponentBuilder.js';
+export * from './modules/Interactions/ModalBuilder.js';
+export * from './modules/Interactions/SlashCommands.js';
+export * from './modules/Interactions/StringSelectComponentBuilder.js';
+export * from './modules/Interactions/TextDisplayComponentBuilder.js';
+export * from './modules/Interactions/TextInputComponentBuilder.js';
+
+export * from './modules/Objects/Embed.js';
+export * from './modules/Objects/Poll.js';
+export * from './modules/Objects/Emoji.js';
+
+export * from './modules/Webhooks/Webhook.js'; 
 
 const GATEWAY_OPCODES = {
 	DISPATCH: 0,

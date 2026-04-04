@@ -1,3 +1,5 @@
+import { DiscordApi } from '../Api/DiscordApi.js';
+
 export class Interaction {
 	#token;
 

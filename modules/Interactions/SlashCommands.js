@@ -1,3 +1,5 @@
+import { DiscordApi } from '../Api/DiscordApi.js';
+
 export class OptionBuilder {
 	constructor() {
 		this.type = null;
@@ -120,6 +122,7 @@ export class SlashCommandBuilder {
 export class SlashCommands {
 	static registerGlobalSlashCommand(data, applicationId, token) {
 		// https://docs.discord.com/developers/interactions/application-commands
+
 		return DiscordApi.fetch(`https://discord.com/api/v10/applications/${applicationId}/commands`, {
 			headers: {
 				Authorization: 'Bot ' + token,

@@ -1,6 +1,3 @@
-import { Channel } from './channel.js';
-import { Message } from './message.js';
-
 class DiscordApiError extends Error {
 	constructor(message) {
 		super(message);
