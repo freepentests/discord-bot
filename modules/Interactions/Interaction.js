@@ -1,4 +1,6 @@
 import { DiscordApi } from '../Api/DiscordApi.js';
+import { Channel } from '../Api/Channel.js';
+import { Guild } from '../Api/Guild.js';
 
 const CALLBACK_TYPES = {
 	CHANNEL_MESSAGE: 4,
