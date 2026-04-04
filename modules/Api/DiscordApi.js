@@ -8,10 +8,11 @@ class DiscordApiError extends Error {
 export class DiscordApi {
 	static async fetch(...args) {
 		const resp = await fetch(...args);
-		const contentType = resp.headers.get('content-type');
+		const contentType = resp.headers.get('Content-Type');
 		const status = resp.status;
 
-		if (status - 200 < 0 || status - 200 >= 100) throw new DiscordApiError(`Received non-2xx response code from Discord API: ${status}\nResponse: ${await resp.text()}`);
+		const isSuccess = status - 200 > 0 || status - 200 <= 100; // checks if the status code is within 200-299 range
+		if (!isSuccess) throw new DiscordApiError(`Received non-2xx response code from Discord API: ${status}\nResponse: ${await resp.text()}`);
 
 		if (contentType !== 'application/json') return resp.text();
 		else return resp.json();

@@ -59,8 +59,8 @@ const MIME_TYPES = {
 };
 
 export const getMimeType = (filename) => {
-	const splitted = filename.split('.');
-	const extension = splitted[splitted.length - 1];
+	const splittedFilename = filename.split('.');
+	const extension = splittedFilename.slice(-1);
 	const mimeType = MIME_TYPES[extension];
 
 	if (mimeType === undefined) return 'application/octet-stream';
