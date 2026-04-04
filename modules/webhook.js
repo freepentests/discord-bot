@@ -14,7 +14,32 @@ export class Webhook {
 			headers: {
 				'Content-Type': 'application/json'
 			},
+			body: JSON.stringify(data),
 			method: 'POST'
+		});
+	}
+
+	changeName(name) {
+		return DiscordApi.fetch(this.url, {
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				name
+			}),
+			method: 'PATCH'
+		});
+	}
+
+	changeAvatar(avatar) {
+		return DiscordApi.fetch(this.url, {
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				avatar
+			}),
+			method: 'PATCH'
 		});
 	}
 
@@ -42,10 +67,10 @@ export class Webhook {
 		});
 	}
 
-	editMessageId(messageId, newData) {
+	editMessage(messageId, newData) {
 		return DiscordApi.fetch(`${this.url}/messages/${messageId}`, {
 			headers: {
-				'Content-Type': 'appliation/json'
+				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(newData),
 			method: 'PATCH'
