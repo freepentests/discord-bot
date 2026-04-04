@@ -13,32 +13,36 @@ export class Attachment {
 		this.#token = token;
 	}
 
-	async upload(channelId) {
-		const body = JSON.stringify({
-			files: [
-				{
-					filename: this.filename,
-					file_size: this.fileSize,
-					id: null,
-					is_clip: false,
-					original_content_type: this.mimeType
-				}
-			]
-		});
+	async createAttachment(channelId) {
+		// We create the attachment, but we don't upload anything to it; that's handled in our uploadAttachmentData method.
 
 		const json = await DiscordApi.fetch(`https://discord.com/api/v10/channels/${channelId}/attachments`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
 				'Content-Type': 'application/json'
 			},
-			body: body,
+			body: JSON.stringify({
+				files: [
+					{
+						filename: this.filename,
+						file_size: this.fileSize,
+						original_content_type: this.mimeType
+						id: null,
+						is_clip: false,
+					}
+				]
+			}),
 			method: 'POST'
 		});
 
-		const uploadUrl = json.attachments[0].upload_url;
-		const uploadFilename = json.attachments[0].upload_filename;
+		return {
+			uploadUrl: json.attachments[0].upload_url,
+			uploadFilename: json.attachments[0].upload_filename;
+		}
+	}
 
-		await DiscordApi.fetch(uploadUrl, {
+	async uploadAttachmentData(attachment) {
+		await DiscordApi.fetch(attachmentData.uploadUrl, {
 			headers: {
 				'Content-Type': 'application/octet-stream',
 			},
@@ -48,7 +52,12 @@ export class Attachment {
 
 		this.id = '0';
 		this.original_content_type = this.mimeType;
-		this.uploaded_filename = uploadFilename
+		this.uploaded_filename = attachmentData.uploadFilename
+	}
+
+	async upload(channelId) {
+		const attachment = this.createAttachment(channelId);
+		this.uploadAttachmentData(attachment);
 	}
 }
 
