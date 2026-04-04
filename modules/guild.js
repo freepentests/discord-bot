@@ -184,5 +184,14 @@ export class Guild {
 			method: 'DELETE'
 		});
 	}
+
+	getStickers() {
+		return DiscordApi.fetch(`https://discord.com/api/v10/guilds/${this.id}/stickers`, {
+			headers: {
+				Authorization: 'Bot ' + this.#token
+			},
+			method: 'GET'
+		});
+	}
 }
 
