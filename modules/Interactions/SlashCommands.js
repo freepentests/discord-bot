@@ -1,5 +1,15 @@
 import { DiscordApi } from '../Api/DiscordApi.js';
 
+const OPTION_TYPES = {
+	STRING: 3,
+	INTEGER: 4,
+	BOOLEAN: 5,
+	USER: 6,
+	CHANNEL: 7,
+	ROLE: 8
+};
+const CHAT_INPUT_COMMAND_TYPE = 1;
+
 export class OptionBuilder {
 	constructor() {
 		this.type = null;
@@ -41,7 +51,7 @@ export class OptionBuilder {
 export class SlashCommandBuilder {
 	constructor() {
 		this.name = null;
-		this.type = 1;
+		this.type = CHAT_INPUT_COMMAND_TYPE;
 		this.description = null;
 		this.options = [];
 	}
@@ -60,7 +70,7 @@ export class SlashCommandBuilder {
 
 	addStringOption(callback) {
 		const option = new OptionBuilder()
-			.setType(3); // 3 is for strings
+			.setType(OPTION_TYPES.STRING); 
 
 		callback(option);
 		this.options.push(option);
@@ -70,7 +80,7 @@ export class SlashCommandBuilder {
 
 	addIntegerOption(callback) {
 		const option = new OptionBuilder()
-			.setType(4); // 4 is for integers
+			.setType(OPTION_TYPES.INTEGER); 
 
 		callback(option);
 		this.options.push(option);
@@ -80,7 +90,7 @@ export class SlashCommandBuilder {
 
 	addBooleanOption(callback) {
 		const option = new OptionBuilder()
-			.setType(5); // 5 is for booleans
+			.setType(OPTION_TYPES.BOOLEAN); 
 
 		callback(option);
 		this.options.push(option);
@@ -90,7 +100,7 @@ export class SlashCommandBuilder {
 
 	addUserOption(callback) {
 		const option = new OptionBuilder()
-			.setType(6); // 6 is for users
+			.setType(OPTION_TYPES.USER); 
 
 		callback(option);
 		this.options.push(option);
@@ -100,7 +110,7 @@ export class SlashCommandBuilder {
 
 	addChannelOption(callback) {
 		const option = new OptionBuilder()
-			.setType(7); // 7 is for channels
+			.setType(OPTION_TYPES.CHANNEL); 
 
 		callback(option);
 		this.options.push(option);
@@ -110,7 +120,7 @@ export class SlashCommandBuilder {
 
 	addRoleOption(callback) {
 		const option = new OptionBuilder()
-			.setType(8); // 8 is for roles
+			.setType(OPTION_TYPES.ROLE);
 
 		callback(option);
 		this.options.push(option);

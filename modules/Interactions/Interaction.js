@@ -1,5 +1,10 @@
 import { DiscordApi } from '../Api/DiscordApi.js';
 
+const CALLBACK_TYPES = {
+	CHANNEL_MESSAGE: 4,
+	MODAL: 9
+};
+
 export class Interaction {
 	#token;
 
@@ -16,7 +21,7 @@ export class Interaction {
 		});
 	}
 
-	interactionCallback(type, data) {
+	#interactionCallback(type, data) {
 		return DiscordApi.fetch(`https://discord.com/api/v10/interactions/${this.id}/${this.token}/callback`, { // this.token is the interaction token, not the bot token
 			headers: {
 				Authorization: 'Bot ' + this.#token,
@@ -31,11 +36,11 @@ export class Interaction {
 	}
 
 	reply(data) {
-		return this.interactionCallback(4, data);
+		return this.#interactionCallback(CALLBACK_TYPES.CHANNEL_MESSAGE, data);
 	}
 
 	displayModal(data) {
-		return this.interactionCallback(9, data);
+		return this.#interactionCallback(CALLBACK_TYPES.MODAL, data);
 	}
 }
 

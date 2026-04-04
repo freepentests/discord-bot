@@ -1,8 +1,19 @@
+const BUTTON_COMPONENT_TYPE = 2;
+
+export const BUTTON_STYLES = {
+	PRIMARY: 1,
+	SECONDARY: 2,
+	SUCCESS: 3,
+	DANGER: 4,
+	LINK: 5,
+	PREMIUM: 6
+}
+
 export class ButtonComponentBuilder {
 	constructor() {
 		// REQUIRED FIELDS
-		this.type = 2;
-		this.style = 1;
+		this.type = BUTTON_COMPONENT_TYPE;
+		this.style = BUTTON_STYLES.PRIMARY;
 		this.custom_id = null;
 
 		// OPTIONAL FIELDS

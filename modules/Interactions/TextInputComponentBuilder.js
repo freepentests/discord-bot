@@ -1,9 +1,16 @@
+const TEXT_INPUT_COMPONENT_TYPE = 4;
+
+export const TEXT_INPUT_STYLES = {
+	SINGLE_LINE: 1,
+	MULTI_LINE: 2
+};
+
 export class TextInputComponentBuilder {
 	constructor() {
 		// REQUIRED FIELDS
-		this.type = 4;
+		this.type = TEXT_INPUT_COMPONENT_TYPE;
 		this.custom_id = null;
-		this.style = 1; // 1 is for single-line input, 2 is for multi-line input
+		this.style = TEXT_INPUT_STYLES.SINGLE_LINE;
 
 		// OPTIONAL FIELDS
 		this.id = null;

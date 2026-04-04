@@ -1,7 +1,9 @@
+const LABEL_COMPONENT_TYPE = 18;
+
 export class LabelComponentBuilder {
 	constructor() {
 		// REQUIRED FIELDS
-		this.type = 18;
+		this.type = LABEL_COMPONENT_TYPE;
 		this.label = null;
 		this.component = null;
 

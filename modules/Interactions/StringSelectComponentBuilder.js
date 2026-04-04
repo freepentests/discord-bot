@@ -1,7 +1,9 @@
+const STRING_SELECT_COMPONENT_TYPE = 3;
+
 export class StringSelectComponentBuilder {
 	constructor() {
 		// REQUIRED FIELDS
-		this.type = 3;
+		this.type = STRING_SELECT_COMPONENT_TYPE;
 		this.options = [];
 		this.custom_id = null;
 

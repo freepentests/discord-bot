@@ -25,6 +25,7 @@ export class Attachment {
 				}
 			]
 		});
+
 		const json = await DiscordApi.fetch(`https://discord.com/api/v10/channels/${channelId}/attachments`, {
 			headers: {
 				Authorization: 'Bot ' + this.#token,
