@@ -28,6 +28,8 @@ const client = new Client(TOKEN);
 - [x] Make a class for an emoji object
 - [x] Add more channel options such as changing a channel's name, etc
 - [ ] Make it easier for developers to update role and channel permissions
+- [ ] Refactor the code
+- [ ] Add support for voice channels so people can make music bots and stuff
 - [ ] Add support for gateway compression with zlib-stream for more efficient network transmission
 - [ ] Add documentation
 - [ ] Publish to NPM
