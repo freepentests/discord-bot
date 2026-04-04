@@ -5,10 +5,11 @@ import { EmbedBuilder } from './modules/embed.js';
 import { PollBuilder } from './modules/poll.js';
 import { Attachment } from './modules/attachment.js';
 import { Emoji } from './modules/emoji.js';
+import { Webhook } from './modules/webhook.js';
 import { ChannelPermissionBits, GatewayIntentBits } from './modules/bitFlags.js';
 import { SlashCommands, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder, SlashCommandBuilder } from './modules/interactions.js';
 
-export { Message, Channel, Guild, EmbedBuilder, PollBuilder, Attachment, SlashCommands, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder, Emoji, ChannelPermissionBits, GatewayIntentBits, SlashCommandBuilder };
+export { Message, Channel, Guild, EmbedBuilder, PollBuilder, Attachment, SlashCommands, Interaction, ButtonComponentBuilder, ActionRowComponentBuilder, StringSelectComponentBuilder, TextDisplayComponentBuilder, ModalBuilder, TextInputComponentBuilder, LabelComponentBuilder, StringSelectOptionBuilder, Emoji, ChannelPermissionBits, GatewayIntentBits, SlashCommandBuilder, Webhook };
 
 export class Client {
 	#token;
