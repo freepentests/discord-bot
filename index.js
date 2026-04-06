@@ -1,6 +1,7 @@
 import { Message } from './modules/Api/Message.js';
 import { Channel } from './modules/Api/Channel.js';
 import { Interaction } from './modules/Interactions/Interaction.js';
+import { GatewayIntentBits, GatewayOpcodes } from 'discord-api-types/v10';
 
 export * from 'discord-api-types/v10';
 
@@ -26,14 +27,8 @@ export * from './modules/Interactions/SlashCommands.js';
 export * from './modules/Emojis/Emoji.js';
 export * from './modules/Webhooks/Webhook.js'; 
 
-const GATEWAY_OPCODES = {
-	DISPATCH: 0,
-	HEARTBEAT: 1,
-	IDENTIFY: 2,
-	HELLO: 10
-};
-const GATEWAY_URL = 'wss://gateway.discord.gg/?encoding=json&v=9';
-const ALL_INTENTS = 67108863;
+const GATEWAY_URL = `wss://gateway.discord.gg/?encoding=json&v=10`;
+const ALL_INTENTS = Object.values(GatewayIntentBits).reduce((acc, intent) => acc | intent, 0);
 
 export class Client {
 	#token;
@@ -52,7 +47,7 @@ export class Client {
 
 	identify() {
 		this.sendPacket({
-			op: GATEWAY_OPCODES.IDENTIFY,
+			op: GatewayOpcodes.Identify,
 			d: {
 				token: this.#token,
 				intents: this.intents,
@@ -98,9 +93,11 @@ export class Client {
 	}
 
 	sendHeartbeat() {
-		if (this.ws.readyState === 1) {
+		const isConnected = this.ws.readyState === 1;
+
+		if (isConnected) {
 			this.sendPacket({
-				op: GATEWAY_OPCODES.HEARTBEAT,
+				op: GatewayOpcodes.Heartbeat,
 				d: null
 			});
 		}
@@ -134,8 +131,8 @@ export class Client {
 			const eventType = json.t;
 			const data = json.d;
 
-			if (opcode === GATEWAY_OPCODES.DISPATCH && eventType === 'READY') this.user = data.user;
-			if (opcode === GATEWAY_OPCODES.HELLO) this.beginHeartbeatInterval(data.heartbeat_interval);
+			if (opcode === GatewayOpcodes.Dispatch && eventType === 'READY') this.user = data.user;
+			if (opcode === GatewayOpcodes.Hello) this.beginHeartbeatInterval(data.heartbeat_interval);
 
 			this.#handleGatewayPacket({
 				opcode,

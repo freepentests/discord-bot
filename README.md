@@ -2,23 +2,27 @@
 
 <img src="https://files.catbox.moe/q2oxq0.png" height="100">
 
-Discord-bot-lib is a modular, lightweight Discord API wrapper designed to simplify the process of developing Discord bots. Discord-bot-lib is lightweight, asynchronous, and it is dependency-free; no need to worry about your `node_modules` directory taking up half of the space on your disk.
+Discord-bot-lib is a modular, asynchronous, lightweight Discord API wrapper designed to simplify the process of developing Discord bots. 
 
 ## Installation & Setup
 
 1. Install Node.JS from their [official website](https://nodejs.org/en/download) or via a Linux [package manager](https://en.wikipedia.org/wiki/Package_manager).
-2. Clone this library onto your local device.
-3. Import the library into one of your projects:
+2. Install discord-api-types with NPM:
+```js
+npm i discord-api-types
+```
+3. Clone this library onto your local device.
+4. Import the library into one of your projects:
 ```js
 import { Client } from 'discord-bot-lib';
 ```
-4. Initialize Client with your bot's authorization token:
+5. Initialize Client with your bot's authorization token:
 ```js
 const TOKEN = 'enter your bot\'s auth token here';
 
 const client = new Client(TOKEN);
 ```
-5. You've finished! Now you can read our documentation to learn how to use the library.
+6. You've finished! Now you can read our documentation to learn how to use the library.
 
 ## TODO:
 - [x] Add embed support
