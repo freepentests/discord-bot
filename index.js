@@ -9,9 +9,6 @@ export * from './modules/Api/Attachment.js';
 export * from './modules/Api/Message.js';
 export * from './modules/Api/Channel.js';
 
-export * from './modules/BitFlags/GatewayIntentBits.js';
-export * from './modules/BitFlags/RolePermissionBits.js';
-
 export * from './modules/Builders/ActionRowComponentBuilder.js';
 export * from './modules/Builders/ButtonComponentBuilder.js';
 export * from './modules/Builders/LabelComponentBuilder.js';
