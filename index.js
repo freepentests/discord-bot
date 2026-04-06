@@ -2,6 +2,8 @@ import { Message } from './modules/Api/Message.js';
 import { Channel } from './modules/Api/Channel.js';
 import { Interaction } from './modules/Interactions/Interaction.js';
 
+export * from 'discord-api-types/v10';
+
 export * from './modules/Api/Guild.js';
 export * from './modules/Api/Attachment.js';
 export * from './modules/Api/Message.js';
@@ -10,20 +12,21 @@ export * from './modules/Api/Channel.js';
 export * from './modules/BitFlags/GatewayIntentBits.js';
 export * from './modules/BitFlags/RolePermissionBits.js';
 
-export * from './modules/Interactions/ActionRowComponentBuilder.js';
-export * from './modules/Interactions/ButtonComponentBuilder.js';
+export * from './modules/Builders/ActionRowComponentBuilder.js';
+export * from './modules/Builders/ButtonComponentBuilder.js';
+export * from './modules/Builders/LabelComponentBuilder.js';
+export * from './modules/Builders/ModalBuilder.js';
+export * from './modules/Builders/StringSelectComponentBuilder.js';
+export * from './modules/Builders/TextDisplayComponentBuilder.js';
+export * from './modules/Builders/TextInputComponentBuilder.js';
+export * from './modules/Builders/PollBuilder.js';
+export * from './modules/Builders/EmbedBuilder.js';
+export * from './modules/Builders/SlashCommandBuilder.js';
+
 export * from './modules/Interactions/Interaction.js';
-export * from './modules/Interactions/LabelComponentBuilder.js';
-export * from './modules/Interactions/ModalBuilder.js';
 export * from './modules/Interactions/SlashCommands.js';
-export * from './modules/Interactions/StringSelectComponentBuilder.js';
-export * from './modules/Interactions/TextDisplayComponentBuilder.js';
-export * from './modules/Interactions/TextInputComponentBuilder.js';
 
-export * from './modules/Objects/Embed.js';
-export * from './modules/Objects/Poll.js';
-export * from './modules/Objects/Emoji.js';
-
+export * from './modules/Emojis/Emoji.js';
 export * from './modules/Webhooks/Webhook.js'; 
 
 const GATEWAY_OPCODES = {

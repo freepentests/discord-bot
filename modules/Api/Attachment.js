@@ -26,7 +26,7 @@ export class Attachment {
 					{
 						filename: this.filename,
 						file_size: this.fileSize,
-						original_content_type: this.mimeType
+						original_content_type: this.mimeType,
 						id: null,
 						is_clip: false,
 					}
@@ -37,8 +37,8 @@ export class Attachment {
 
 		return {
 			uploadUrl: json.attachments[0].upload_url,
-			uploadFilename: json.attachments[0].upload_filename;
-		}
+			uploadFilename: json.attachments[0].upload_filename
+		};
 	}
 
 	async uploadAttachmentData(attachment) {
@@ -52,7 +52,7 @@ export class Attachment {
 
 		this.id = '0';
 		this.original_content_type = this.mimeType;
-		this.uploaded_filename = attachmentData.uploadFilename
+		this.uploaded_filename = attachmentData.uploadFilename;
 	}
 
 	async upload(channelId) {
