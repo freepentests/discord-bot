@@ -1,4 +1,3 @@
-
 export class PollBuilder {
 	constructor() {
 		this.allow_multiselect = false;
