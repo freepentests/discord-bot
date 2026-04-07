@@ -6,5 +6,5 @@ package-lock.json
 *.swp
 
 # a file I'm using to test the library
-program.js
+src/program.js
 

@@ -1,31 +1,31 @@
-import { Message } from './modules/Api/Message.js';
-import { Channel } from './modules/Api/Channel.js';
-import { Interaction } from './modules/Interactions/Interaction.js';
+import { Message } from './Modules/Api/Message.js';
+import { Channel } from './Modules/Api/Channel.js';
+import { Interaction } from './Modules/Interactions/Interaction.js';
 import { GatewayIntentBits, GatewayOpcodes } from 'discord-api-types/v10';
 
 export * from 'discord-api-types/v10';
 
-export * from './modules/Api/Guild.js';
-export * from './modules/Api/Attachment.js';
-export * from './modules/Api/Message.js';
-export * from './modules/Api/Channel.js';
+export * from './Modules/Api/Guild.js';
+export * from './Modules/Api/Attachment.js';
+export * from './Modules/Api/Message.js';
+export * from './Modules/Api/Channel.js';
 
-export * from './modules/Builders/ActionRowComponentBuilder.js';
-export * from './modules/Builders/ButtonComponentBuilder.js';
-export * from './modules/Builders/LabelComponentBuilder.js';
-export * from './modules/Builders/ModalBuilder.js';
-export * from './modules/Builders/StringSelectComponentBuilder.js';
-export * from './modules/Builders/TextDisplayComponentBuilder.js';
-export * from './modules/Builders/TextInputComponentBuilder.js';
-export * from './modules/Builders/PollBuilder.js';
-export * from './modules/Builders/EmbedBuilder.js';
-export * from './modules/Builders/SlashCommandBuilder.js';
+export * from './Modules/Builders/ActionRowComponentBuilder.js';
+export * from './Modules/Builders/ButtonComponentBuilder.js';
+export * from './Modules/Builders/LabelComponentBuilder.js';
+export * from './Modules/Builders/ModalBuilder.js';
+export * from './Modules/Builders/StringSelectComponentBuilder.js';
+export * from './Modules/Builders/TextDisplayComponentBuilder.js';
+export * from './Modules/Builders/TextInputComponentBuilder.js';
+export * from './Modules/Builders/PollBuilder.js';
+export * from './Modules/Builders/EmbedBuilder.js';
+export * from './Modules/Builders/SlashCommandBuilder.js';
 
-export * from './modules/Interactions/Interaction.js';
-export * from './modules/Interactions/SlashCommands.js';
+export * from './Modules/Interactions/Interaction.js';
+export * from './Modules/Interactions/SlashCommands.js';
 
-export * from './modules/Emojis/Emoji.js';
-export * from './modules/Webhooks/Webhook.js'; 
+export * from './Modules/Emojis/Emoji.js';
+export * from './Modules/Webhooks/Webhook.js'; 
 
 const GATEWAY_URL = `wss://gateway.discord.gg/?encoding=json&v=10`;
 const ALL_INTENTS = Object.values(GatewayIntentBits).reduce((acc, intent) => acc | intent, 0);
