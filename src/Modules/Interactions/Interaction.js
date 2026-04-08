@@ -13,9 +13,7 @@ export class Interaction {
 	constructor(token, data) {
 		this.#token = token;
 
-		for (const key of Object.keys(data)) {
-			this[key] = data[key];
-		}
+		Object.assign(this, data)
 
 		this.channel = new Channel(this.#token, data.channel);
 		this.guild = new Guild(this.#token, {

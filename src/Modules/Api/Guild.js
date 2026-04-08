@@ -7,9 +7,8 @@ export class Guild {
 	constructor(token, data) {
 		this.#token = token;
 
-		for (const key of Object.keys(data)) {
-			this[key] = data[key];
-		}
+		Object.assign(this, data)
+
 	}
 
 	async addRole(roleId, userId) {

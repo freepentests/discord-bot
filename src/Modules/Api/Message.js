@@ -8,9 +8,8 @@ export class Message {
 	constructor(token, data) {
 		this.#token = token;
 
-		for (const key of Object.keys(data)) {
-			this[key] = data[key];
-		}
+		Object.assign(this, data)
+
 
 		this.guild = new Guild(this.#token, {
 			id: this.guild_id
