@@ -7,9 +7,10 @@ Discord-bot-lib is a modular, asynchronous, lightweight Discord API wrapper desi
 ## Installation & Setup
 
 1. Install Node.JS from their [official website](https://nodejs.org/en/download) or via a Linux [package manager](https://en.wikipedia.org/wiki/Package_manager).
-2. Install discord-api-types with NPM:
+2. Install discord-api-types and ws with NPM:
 ```bash
 npm i discord-api-types
+npm i ws
 ```
 3. Clone this library onto your local device.
 4. Import the library into one of your projects:
