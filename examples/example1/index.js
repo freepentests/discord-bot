@@ -2,11 +2,11 @@ import { Client, MessageFlags } from '../../src/index.js';
 
 const client = new Client('put your bot token here');
 
-client.addEventListener('READY', (e) => {
+client.on('READY', (e) => {
 	console.log(`Logged in as ${e.user.username}#${e.user.discriminator}`);
 })
 
-client.addEventListener('MESSAGE_CREATE', (message) => {
+client.on('MESSAGE_CREATE', (message) => {
 	if (message.author.bot) return;
 
 	if (message.content === '!ping') {
@@ -27,7 +27,7 @@ client.addEventListener('MESSAGE_CREATE', (message) => {
 	}
 });
 
-client.addEventListener('INTERACTION_CREATE', (interaction) => {
+client.on('INTERACTION_CREATE', (interaction) => {
 	if (interaction.data.name !== 'timeout') return; 
 
 	const userIdToTimeout = interaction.data.options[0].value;

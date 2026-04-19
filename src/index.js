@@ -81,9 +81,11 @@ export class Client extends EventEmitter {
 		}
 	}
 
-	#handleGatewayPacket(packet) {
-		const eventInstance = this.#constructEventInstance(packet);
-		this.emit(packet.eventType, eventInstance);
+	#handleGatewayPacket(data) {
+		if (data.opcode === GatewayOpcodes.Hello) this.beginHeartbeatInterval(data.data.heartbeat_interval);
+
+		const eventInstance = this.#constructEventInstance(data);
+		this.emit(data.eventType, eventInstance);
 	}
 
 	sendHeartbeat() {
@@ -119,14 +121,16 @@ export class Client extends EventEmitter {
 		this.ws.addEventListener('open', this.onWsOpen.bind(this));
 		this.ws.addEventListener('close', this.onWsClose.bind(this));
 
+		this.on('READY', (data) => {
+			this.user = data.user;
+		});
+
 		this.ws.addEventListener('message', (packet) => {
 			const json = JSON.parse(packet.data);
 			const opcode = json.op;
 			const eventType = json.t;
 			const data = json.d;
 
-			if (opcode === GatewayOpcodes.Dispatch && eventType === 'READY') this.user = data.user;
-			if (opcode === GatewayOpcodes.Hello) this.beginHeartbeatInterval(data.heartbeat_interval);
 
 			this.#handleGatewayPacket({
 				opcode,
