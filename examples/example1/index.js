@@ -2,6 +2,10 @@ import { Client, MessageFlags } from '../../src/index.js';
 
 const client = new Client('put your bot token here');
 
+client.addEventListener('READY', (e) => {
+	console.log(`Logged in as ${e.user.username}#${e.user.discriminator}`);
+})
+
 client.addEventListener('MESSAGE_CREATE', (message) => {
 	if (message.author.bot) return;
 
