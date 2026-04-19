@@ -2,6 +2,7 @@ import { Message } from './Modules/Api/Message.js';
 import { Channel } from './Modules/Api/Channel.js';
 import { Interaction } from './Modules/Interactions/Interaction.js';
 import { GatewayIntentBits, GatewayOpcodes } from 'discord-api-types/v10';
+import { EventEmitter } from 'events';
 
 export * from 'discord-api-types/v10';
 
@@ -30,10 +31,12 @@ export * from './Modules/Webhooks/Webhook.js';
 const GATEWAY_URL = `wss://gateway.discord.gg/?encoding=json&v=10`;
 const ALL_INTENTS = Object.values(GatewayIntentBits).reduce((acc, intent) => acc | intent, 0);
 
-export class Client {
+export class Client extends EventEmitter {
 	#token;
 
 	constructor(token, intents = ALL_INTENTS) {
+		super();
+
 		this.#token = token;
 		this.intents = intents;
 		this.user = {};
@@ -57,14 +60,6 @@ export class Client {
 		});
 	}
 
-	addEventListener(eventType, callback) {
-		if (!this.events[eventType]) {
-			this.events[eventType] = [];
-		}
-
-		this.events[eventType].push(callback);
-	}
-
 	#constructEventInstance(packet) {
 		switch (packet.eventType) {
 			case 'INTERACTION_CREATE':
@@ -86,10 +81,8 @@ export class Client {
 	}
 
 	#handleGatewayPacket(packet) {
-		if (!this.events[packet.eventType]) return;
-
 		const eventInstance = this.#constructEventInstance(packet);
-		this.events[packet.eventType].forEach((callback) => callback(eventInstance));
+		this.emit(packet.eventType, eventInstance);
 	}
 
 	sendHeartbeat() {
