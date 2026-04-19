@@ -3,6 +3,7 @@ import { Channel } from './Modules/Api/Channel.js';
 import { Interaction } from './Modules/Interactions/Interaction.js';
 import { GatewayIntentBits, GatewayOpcodes } from 'discord-api-types/v10';
 import { EventEmitter } from 'events';
+import { WebSocket } from 'ws';
 
 export * from 'discord-api-types/v10';
 

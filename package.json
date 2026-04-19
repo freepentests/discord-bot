@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/freepentests/discord-bot#readme",
   "dependencies": {
-    "discord-api-types": "^0.38.44"
+    "discord-api-types": "^0.38.44",
+    "ws": "^8.20.0"
   }
 }
